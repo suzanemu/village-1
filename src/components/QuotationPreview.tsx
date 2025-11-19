@@ -43,9 +43,9 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
   const lastPage = pages[pages.length - 1];
   
   // Adjusted thresholds to allow more items on a single page before pushing footer to next page
-  // First page can comfortably hold up to 6-7 items with the full header and footer
-  const thresholdFirstPage = 6; 
-  const thresholdStandardPage = 9; 
+  // First page can comfortably hold up to 8 items with the full header and footer
+  const thresholdFirstPage = 8; 
+  const thresholdStandardPage = 10; 
   
   const isLastPageFull = lastPage.items.length > (lastPage.type === 'first' ? thresholdFirstPage : thresholdStandardPage);
   
