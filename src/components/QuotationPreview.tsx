@@ -42,11 +42,10 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
   // Check if footer fits on the last page or needs a new one
   const lastPage = pages[pages.length - 1];
   
-  // More conservative thresholds to ensure footer doesn't overlap
-  // If the item count exceeds these values, the footer (Totals + Notes + Signature) 
-  // is pushed to a clean new page to prevent overlap.
-  const thresholdFirstPage = 3; 
-  const thresholdStandardPage = 6; 
+  // Adjusted thresholds to allow more items on a single page before pushing footer to next page
+  // First page can comfortably hold up to 6-7 items with the full header and footer
+  const thresholdFirstPage = 6; 
+  const thresholdStandardPage = 9; 
   
   const isLastPageFull = lastPage.items.length > (lastPage.type === 'first' ? thresholdFirstPage : thresholdStandardPage);
   
