@@ -390,6 +390,21 @@ const App: React.FC = () => {
                           className="w-full h-1.5 bg-amber-200 rounded-lg appearance-none cursor-pointer accent-amber-600"
                         />
                       </div>
+                      <div className="mb-2">
+                        <label className="block text-[10px] text-amber-600 font-bold mb-1">VERTICAL POSITION</label>
+                        <input 
+                          type="range" 
+                          min="0" 
+                          max="100" 
+                          value={data.watermarkVerticalPosition}
+                          onChange={(e) => setData({...data, watermarkVerticalPosition: parseInt(e.target.value)})}
+                          className="w-full h-1.5 bg-amber-200 rounded-lg appearance-none cursor-pointer accent-amber-600"
+                        />
+                        <div className="flex justify-between text-[9px] text-amber-600 mt-0.5">
+                          <span>Bottom</span>
+                          <span>Top</span>
+                        </div>
+                      </div>
                       <button 
                         onClick={() => setData({...data, watermarkImage: undefined})}
                         className="text-xs font-medium text-red-600 hover:text-red-700 flex items-center gap-1"

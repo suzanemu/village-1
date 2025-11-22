@@ -118,7 +118,13 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
             style={{ width: '210mm', height: '297mm' }}
           >
              {/* Watermark Layer - On Every Page */}
-            <div className="absolute bottom-0 right-0 p-12 opacity-[0.08] pointer-events-none z-0 flex items-end justify-end w-full h-full overflow-hidden">
+            <div 
+              className="absolute right-0 p-12 opacity-[0.08] pointer-events-none z-0 flex items-end justify-end w-full h-full overflow-hidden"
+              style={{ 
+                bottom: `${data.watermarkVerticalPosition}%`,
+                transform: `translateY(${data.watermarkVerticalPosition}%)`
+              }}
+            >
                  {data.watermarkImage ? (
                    <img 
                      src={data.watermarkImage} 
