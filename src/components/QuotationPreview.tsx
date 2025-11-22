@@ -143,7 +143,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                     <div className="text-xs leading-snug">
                       <p>3 Avoy Das Lane, Diganta 1</p>
                       <p>A-2 (1st Floor) Tikatuli, Dhaka</p>
-                      <p>Cell: +8801843800166, +8801754569378</p>
+                      <p>Cell: +8801754569378</p>
                       <p>Email: shakhawat.village@gmail.com</p>
                     </div>
                   </div>
