@@ -321,7 +321,15 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
             {/* Bottom Brand Strip - Appears on Every Page */}
             <div className="absolute bottom-[15mm] md:bottom-[20mm] left-[15mm] md:left-[20mm] right-[15mm] md:right-[20mm] z-20 pt-4 border-t-2 border-gray-200 flex justify-between items-center text-xs text-gray-500 bg-white">
               <p className="flex items-center gap-2">
-                <span className="inline-block h-5 w-5 bg-gradient-to-br from-village-blue to-village-green rounded-full flex items-center justify-center text-white text-[10px] font-bold">V</span>
+                {data.logoImage ? (
+                  <img 
+                    src={data.logoImage} 
+                    alt="Logo" 
+                    className="h-5 w-auto object-contain"
+                  />
+                ) : (
+                  <span className="inline-block h-5 w-5 bg-gradient-to-br from-village-blue to-village-green rounded-full flex items-center justify-center text-white text-[10px] font-bold">V</span>
+                )}
                 <span className="font-semibold">Village Builders</span>
               </p>
               <p className="text-gray-400">General Constructor & Supplier</p>
