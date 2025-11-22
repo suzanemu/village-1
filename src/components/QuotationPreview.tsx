@@ -159,7 +159,8 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                   className="flex justify-between items-start border-b border-village-green"
                   style={{
                     marginBottom: `${headerBottomMargin}px`,
-                    paddingBottom: `${headerBottomPadding}px`
+                    paddingBottom: `${headerBottomPadding}px`,
+                    marginTop: `${data.headerVerticalPosition}px`
                   }}
                 >
                   <VillageLogo 

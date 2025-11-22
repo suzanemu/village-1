@@ -418,6 +418,37 @@ const App: React.FC = () => {
               </div>
             </div>
 
+            {/* Header Vertical Position Control */}
+            <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <label className="block text-xs font-bold text-blue-800 mb-3 flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                </svg>
+                HEADER VERTICAL POSITION
+              </label>
+              <div className="mb-2">
+                <label className="block text-[10px] text-blue-600 font-bold mb-1 flex items-center justify-between">
+                  <span>OFFSET FROM TOP</span>
+                  <span className="text-xs font-bold text-blue-700">{data.headerVerticalPosition}px</span>
+                </label>
+                <input 
+                  type="range" 
+                  min="0" 
+                  max="100" 
+                  value={data.headerVerticalPosition}
+                  onChange={(e) => setData({...data, headerVerticalPosition: parseInt(e.target.value)})}
+                  className="w-full h-1.5 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                />
+                <div className="flex justify-between text-[9px] text-blue-600 mt-0.5">
+                  <span>Top</span>
+                  <span>Down</span>
+                </div>
+              </div>
+              <p className="text-[10px] text-blue-600 mt-2">
+                Slide to move the header section (logo, company info, and line) up or down on the page
+              </p>
+            </div>
+
             {/* Watermark Logo Upload */}
             <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
               <label className="block text-xs font-bold text-amber-800 mb-3">WATERMARK LOGO (Background)</label>
