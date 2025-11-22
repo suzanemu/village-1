@@ -28,7 +28,29 @@ const App: React.FC = () => {
   // --- Auto-Save Draft ---
   useEffect(() => {
     const timer = setTimeout(() => {
-      localStorage.setItem('village_quotation_draft', JSON.stringify(data));
+      try {
+        localStorage.setItem('village_quotation_draft', JSON.stringify(data));
+      } catch (error) {
+        // If quota exceeded, try saving without images (they take up most space)
+        if (error instanceof DOMException && error.name === 'QuotaExceededError') {
+          try {
+            const dataWithoutImages = {
+              ...data,
+              logoImage: undefined,
+              signatureImage: undefined
+            };
+            localStorage.setItem('village_quotation_draft', JSON.stringify(dataWithoutImages));
+            showNotification("Storage full. Images not saved in draft.", "error");
+          } catch (fallbackError) {
+            // If even that fails, clear the draft
+            console.error('Failed to save draft even without images:', fallbackError);
+            localStorage.removeItem('village_quotation_draft');
+            showNotification("Storage full. Draft auto-save disabled.", "error");
+          }
+        } else {
+          console.error('Failed to save draft:', error);
+        }
+      }
     }, 1000);
     return () => clearTimeout(timer);
   }, [data]);
