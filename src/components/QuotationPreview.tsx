@@ -370,7 +370,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                             </div>
                             {/* Grand Total in Words */}
                             <div className="text-xs text-gray-800 italic border-t border-gray-400 pt-2 mt-2">
-                              <span className="font-semibold">In word:</span> {grandTotalInWords} taka only
+                              <span className="font-semibold">In word:</span> {grandTotalInWords} only
                             </div>
                           </div>
                         </div>
