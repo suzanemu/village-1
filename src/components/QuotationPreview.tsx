@@ -320,7 +320,6 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                         )}
                         
                         <div className="inline-block text-left">
-                          <div className="w-56 h-0.5 bg-gradient-to-r from-village-blue to-transparent mb-3"></div>
                           <p className="text-base font-bold text-gray-900">Shakhawat Hossain</p>
                           <p className="text-xs text-gray-600 font-semibold tracking-wide uppercase">Authorized Signature</p>
                           <p className="text-xs text-village-blue font-medium mt-1">Village Builders</p>
