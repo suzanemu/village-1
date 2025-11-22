@@ -11,6 +11,56 @@ interface QuotationPreviewProps {
 const ITEMS_PER_FIRST_PAGE = 8;
 const ITEMS_PER_PAGE = 12;
 
+// Helper function to convert number to words
+const numberToWords = (num: number): string => {
+  if (num === 0) return 'Zero';
+  
+  const ones = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+  const teens = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+  const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+  const thousands = ['', 'Thousand', 'Million', 'Billion'];
+
+  const convertHundreds = (n: number): string => {
+    let str = '';
+    if (n >= 100) {
+      str += ones[Math.floor(n / 100)] + ' Hundred ';
+      n %= 100;
+    }
+    if (n >= 10 && n <= 19) {
+      str += teens[n - 10] + ' ';
+    } else if (n >= 20 || n > 0) {
+      str += tens[Math.floor(n / 10)] + ' ';
+      str += ones[n % 10] + ' ';
+    }
+    return str.trim();
+  };
+
+  const integerPart = Math.floor(num);
+  const decimalPart = Math.round((num - integerPart) * 100);
+
+  let result = '';
+  let groupIndex = 0;
+  let tempNum = integerPart;
+
+  while (tempNum > 0) {
+    const group = tempNum % 1000;
+    if (group !== 0) {
+      const groupWords = convertHundreds(group);
+      result = groupWords + (thousands[groupIndex] ? ' ' + thousands[groupIndex] : '') + ' ' + result;
+    }
+    tempNum = Math.floor(tempNum / 1000);
+    groupIndex++;
+  }
+
+  result = result.trim() + ' Dollars';
+
+  if (decimalPart > 0) {
+    result += ' and ' + convertHundreds(decimalPart) + ' Cents';
+  }
+
+  return result.trim();
+};
+
 export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps>(({ data }, ref) => {
   
   // Helper to calculate totals
@@ -37,6 +87,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
   const vatAmount = subTotal * ((data.vatRate || 0) / 100);
   const taxAmount = subTotal * ((data.taxRate || 0) / 100);
   const grandTotal = subTotal + vatAmount + taxAmount;
+  const grandTotalInWords = numberToWords(grandTotal);
   const hasTax = (data.vatRate || 0) > 0 || (data.taxRate || 0) > 0;
 
   // Check if footer fits on the last page or needs a new one
@@ -80,7 +131,6 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
               
               {/* --- Header Section --- */}
               {pageIndex === 0 ? (
-                // Full Header (Page 1)
                 <header className="flex justify-between items-start mb-4 border-b border-village-green pb-2">
                   <VillageLogo 
                     className="scale-75 origin-top-left -mt-4 -ml-4" 
@@ -99,7 +149,6 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                   </div>
                 </header>
               ) : (
-                // Simple Header (Page 2+)
                 <header className="flex justify-between items-center mb-8 border-b border-gray-200 pb-2 opacity-60">
                    <div className="flex items-center gap-2">
                       {data.logoImage ? (
@@ -155,7 +204,6 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                     </thead>
                     <tbody className="text-gray-700 text-xs md:text-sm">
                       {page.items.map((item, idx) => {
-                        // Calculate global index
                         const globalIndex = (pageIndex === 0 ? 0 : ITEMS_PER_FIRST_PAGE + (pageIndex - 1) * ITEMS_PER_PAGE) + idx + 1;
                         
                         return (
@@ -176,7 +224,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
 
               {/* --- Footer (Totals + Notes + Signatures) - Only on Last Page --- */}
               {showFooter && (
-                <div className="mt-6">
+                <div className="mt-4">
 
                   {/* Notes and Totals - Side by Side */}
                   <div className="flex gap-6 mb-8 border-t-2 border-gray-100 pt-4">
@@ -221,6 +269,10 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                                 <span className="font-bold text-green-700 text-2xl">
                                   ${grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                 </span>
+                              </div>
+                              {/* Grand Total in Words */}
+                              <div className="mt-2 text-xs text-gray-600 italic text-right px-2">
+                                {grandTotalInWords}
                               </div>
                             </td>
                           </tr>
