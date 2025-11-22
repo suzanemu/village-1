@@ -227,11 +227,14 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                 <div className="mt-4">
 
                   {/* Notes and Totals - Side by Side */}
-                  <div className="flex gap-6 mb-8 border-t-2 border-gray-100 pt-4">
+                  <div className="flex gap-6 mb-8 border-t-2 border-gray-100 pt-6">
                     {/* Notes Section - Left Side */}
                     {data.notes && (
-                      <div className="flex-1 border-2 border-gray-300 rounded-lg p-4">
-                        <h4 className="font-bold text-gray-800 mb-3 text-sm uppercase">Note / Terms & Conditions</h4>
+                      <div className="flex-1 bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200 rounded-xl p-5 shadow-sm">
+                        <div className="flex items-center gap-2 mb-3">
+                          <div className="h-1 w-8 bg-gradient-to-r from-village-blue to-village-green rounded-full"></div>
+                          <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Terms & Conditions</h4>
+                        </div>
                         <div className="text-xs text-gray-600 whitespace-pre-wrap leading-relaxed">
                           {data.notes}
                         </div>
@@ -240,67 +243,83 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
 
                     {/* Totals Section - Right Side */}
                     <div className="flex-1">
-                      <table className="w-full border-collapse text-sm">
-                        <tbody>
-                          <tr>
-                            <td className="p-3 text-right font-medium text-gray-600">Sub-total</td>
-                            <td className="p-3 text-right font-bold text-gray-800 text-lg">${subTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                          </tr>
-                          {data.vatRate > 0 && (
-                            <tr className="border-t border-gray-200">
-                              <td className="p-3 text-right font-medium text-gray-600">Tax ({data.vatRate}%)</td>
-                              <td className="p-3 text-right font-bold text-gray-800 text-lg">
-                                ${vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                              </td>
+                      <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                        <table className="w-full border-collapse text-sm">
+                          <tbody>
+                            <tr className="border-b border-gray-100">
+                              <td className="p-3 text-right font-medium text-gray-600">Sub-total</td>
+                              <td className="p-3 text-right font-bold text-gray-800 text-base">${subTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                             </tr>
-                          )}
-                          {data.taxRate > 0 && (
-                            <tr className="border-t border-gray-200">
-                              <td className="p-3 text-right font-medium text-gray-600">Tax ({data.taxRate}%)</td>
-                              <td className="p-3 text-right font-bold text-gray-800 text-lg">
-                                ${taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                              </td>
-                            </tr>
-                          )}
-                          <tr>
-                            <td colSpan={2} className="pt-4">
-                              <div className="bg-green-100 rounded-lg p-4 flex justify-between items-center">
-                                <span className="font-bold text-green-700 text-base uppercase">Grand Total</span>
-                                <span className="font-bold text-green-700 text-2xl">
-                                  ${grandTotal.toLocaleString()}
-                                </span>
-                              </div>
-                              {/* Grand Total in Words */}
-                              <div className="mt-2 text-base text-gray-600 italic text-right px-2">
-                                <span className="font-bold">In word:</span> {grandTotalInWords} taka only
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                            {data.vatRate > 0 && (
+                              <tr className="border-b border-gray-100">
+                                <td className="p-3 text-right font-medium text-gray-600">Tax ({data.vatRate}%)</td>
+                                <td className="p-3 text-right font-bold text-gray-800 text-base">
+                                  ${vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                </td>
+                              </tr>
+                            )}
+                            {data.taxRate > 0 && (
+                              <tr className="border-b border-gray-100">
+                                <td className="p-3 text-right font-medium text-gray-600">Tax ({data.taxRate}%)</td>
+                                <td className="p-3 text-right font-bold text-gray-800 text-base">
+                                  ${taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                </td>
+                              </tr>
+                            )}
+                          </tbody>
+                        </table>
+                        
+                        {/* Grand Total Card */}
+                        <div className="bg-gradient-to-br from-emerald-500 to-green-600 p-5">
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="font-bold text-white text-base uppercase tracking-wider">Grand Total</span>
+                            <span className="font-bold text-white text-3xl">
+                              ${grandTotal.toLocaleString()}
+                            </span>
+                          </div>
+                          {/* Grand Total in Words */}
+                          <div className="text-xs text-green-50 italic border-t border-green-400/30 pt-2 mt-2">
+                            <span className="font-semibold">In word:</span> {grandTotalInWords} taka only
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Signature Block */}
+                  {/* Signature Block with Modern Design */}
                   <div style={{ marginTop: `${data.signatureSpacing}px` }}>
                     <div className="pb-4" style={{ transform: `scale(${data.signatureBlockSize / 100})`, transformOrigin: 'left top' }}>
-                      <p className="font-bold text-gray-800 mb-2" style={{ fontSize: `${data.thankYouSize}px` }}>Thank You</p>
-                      
-                      {/* E-Signature Image */}
-                      {data.signatureImage && (
-                        <div className="mb-4">
-                          <img 
-                            src={data.signatureImage} 
-                            alt="Signature" 
-                            className="h-16 w-auto object-contain"
-                          />
+                      <div className="bg-gradient-to-r from-gray-50 to-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                        <p className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-village-blue to-village-green mb-4" style={{ fontSize: `${data.thankYouSize}px` }}>
+                          Thank You for Your Business
+                        </p>
+                        
+                        {/* E-Signature Image */}
+                        {data.signatureImage && (
+                          <div className="mb-4">
+                            <img 
+                              src={data.signatureImage} 
+                              alt="Signature" 
+                              className="h-16 w-auto object-contain"
+                            />
+                          </div>
+                        )}
+                        
+                        <div className="inline-block text-left">
+                          <div className="w-56 h-0.5 bg-gradient-to-r from-village-blue to-transparent mb-3"></div>
+                          <p className="text-base font-bold text-gray-900">Shakhawat Hossain</p>
+                          <p className="text-xs text-gray-600 font-semibold tracking-wide uppercase">Authorized Signature</p>
+                          <p className="text-xs text-village-blue font-medium mt-1">Village Builders</p>
                         </div>
-                      )}
+                      </div>
                       
-                      <div className="inline-block text-left">
-                        <div className="w-48 border-t-2 border-gray-900 mb-2"></div>
-                        <p className="text-base font-bold text-gray-900">Shakhawat Hossain</p>
-                        <p className="text-xs text-gray-500 font-semibold tracking-wide">Village Builders</p>
+                      {/* Bottom Brand Strip */}
+                      <div className="mt-6 pt-4 border-t-2 border-gray-200 flex justify-between items-center text-xs text-gray-500">
+                        <p className="flex items-center gap-2">
+                          <span className="inline-block h-5 w-5 bg-gradient-to-br from-village-blue to-village-green rounded-full flex items-center justify-center text-white text-[10px] font-bold">V</span>
+                          <span className="font-semibold">Village Builders</span>
+                        </p>
+                        <p className="text-gray-400">General Constructor & Supplier</p>
                       </div>
                     </div>
                   </div>
