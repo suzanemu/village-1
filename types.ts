@@ -13,6 +13,7 @@ export interface QuotationData {
   watermarkWidth: number;
   watermarkVerticalPosition: number; // Vertical position offset (0-100, where 0 is bottom, 100 is top)
   headerVerticalPosition: number; // Header top spacing (0-100px)
+  contentFontScale: number; // Font size scale for all content between header and footer (70-130%)
   date: string;
   toName: string;
   toCompany: string;
@@ -34,6 +35,7 @@ export const INITIAL_DATA: QuotationData = {
   watermarkWidth: 500,
   watermarkVerticalPosition: 0, // Default at bottom
   headerVerticalPosition: 0, // Default at top (no offset)
+  contentFontScale: 100, // Default 100% (normal size)
   date: new Date().toISOString().split('T')[0],
   toName: "Mr. John Doe",
   toCompany: "ABC Construction Ltd.",

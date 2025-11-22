@@ -375,6 +375,35 @@ const App: React.FC = () => {
           <section>
             <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Company Branding</h3>
             
+            {/* Content Font Scale Control - NEW */}
+            <div className="mb-6 p-4 bg-purple-50 rounded-lg border border-purple-200">
+              <label className="block text-xs font-bold text-purple-800 mb-3 flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+                CONTENT FONT SIZE
+              </label>
+              <div className="flex items-center gap-4 mb-2">
+                <input 
+                  type="range" 
+                  min="70" 
+                  max="130" 
+                  value={data.contentFontScale}
+                  onChange={(e) => setData({...data, contentFontScale: parseInt(e.target.value)})}
+                  className="flex-1 h-2 bg-purple-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                />
+                <span className="text-sm font-bold text-purple-700 min-w-[60px] text-right">{data.contentFontScale}%</span>
+              </div>
+              <div className="flex justify-between text-[10px] text-purple-600 mb-2">
+                <span>Smaller</span>
+                <span className="font-bold">Normal (100%)</span>
+                <span>Larger</span>
+              </div>
+              <p className="text-[10px] text-purple-600 mt-2">
+                Adjust all text size between header and footer. Spacing adapts automatically to fit content.
+              </p>
+            </div>
+
             {/* Header Logo Upload */}
             <div className="mb-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
               <label className="block text-xs font-bold text-slate-600 mb-3">HEADER LOGO</label>

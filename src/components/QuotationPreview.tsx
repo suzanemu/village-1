@@ -77,6 +77,9 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
   const headerBottomMargin = 0.5 * headerTextScale; // Ultra minimal margin
   const headerBottomPadding = 0.5 * headerTextScale; // Ultra minimal padding
 
+  // Content font scale (70-130%)
+  const contentScale = (data.contentFontScale || 100) / 100;
+
   // Split items into pages
   const pages = [];
   const items = [...data.items];
@@ -211,8 +214,15 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                 </header>
               )}
 
-              {/* --- Content Area (moves with headerVerticalPosition) --- */}
-              <div style={{ marginTop: pageIndex === 0 ? `${data.headerVerticalPosition}px` : '0px' }}>
+              {/* --- Content Area with Font Scaling --- */}
+              <div 
+                style={{ 
+                  marginTop: pageIndex === 0 ? `${data.headerVerticalPosition}px` : '0px',
+                  transform: `scale(${contentScale})`,
+                  transformOrigin: 'top left',
+                  width: `${100 / contentScale}%`
+                }}
+              >
                 {/* --- Meta Info (Only Page 1) --- */}
                 {pageIndex === 0 && (
                   <>
