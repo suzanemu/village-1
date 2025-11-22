@@ -52,7 +52,7 @@ const numberToWords = (num: number): string => {
     groupIndex++;
   }
 
-  result = result.trim() + ' Dollars';
+  result = result.trim() + ' Taka';
 
   if (decimalPart > 0) {
     result += ' and ' + convertHundreds(decimalPart) + ' Cents';
@@ -339,13 +339,13 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                             <tbody>
                               <tr className="bg-white border-b-2 border-gray-500">
                                 <td className="p-3 text-right font-medium text-gray-900">Sub-total</td>
-                                <td className="p-3 text-right font-bold text-gray-900 text-base">${subTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                                <td className="p-3 text-right font-bold text-gray-900 text-base">৳{subTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                               </tr>
                               {data.vatRate > 0 && (
                                 <tr className="bg-white border-b-2 border-gray-500">
                                   <td className="p-3 text-right font-medium text-gray-900">Tax ({data.vatRate}%)</td>
                                   <td className="p-3 text-right font-bold text-gray-900 text-base">
-                                    ${vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                    ৳{vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                   </td>
                                 </tr>
                               )}
@@ -353,7 +353,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                                 <tr className="bg-white border-b-2 border-gray-500">
                                   <td className="p-3 text-right font-medium text-gray-900">Tax ({data.taxRate}%)</td>
                                   <td className="p-3 text-right font-bold text-gray-900 text-base">
-                                    ${taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                    ৳{taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                   </td>
                                 </tr>
                               )}
@@ -365,7 +365,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                             <div className="flex justify-between items-center mb-2">
                               <span className="font-bold text-gray-900 text-base uppercase tracking-wider">Grand Total</span>
                               <span className="font-bold text-gray-900 text-3xl">
-                                ${grandTotal.toLocaleString()}
+                                ৳{grandTotal.toLocaleString()}
                               </span>
                             </div>
                             {/* Grand Total in Words */}
