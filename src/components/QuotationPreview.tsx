@@ -213,35 +213,38 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                      </table>
                   </div>
 
-                  {/* Notes */}
-                  {data.notes && (
-                    <div className="mb-8">
-                      <h4 className="font-bold text-gray-800 mb-2 text-xs uppercase border-b border-gray-300 inline-block pb-1">Note / Terms & Conditions:</h4>
-                      <div className="text-xs text-gray-600 whitespace-pre-wrap leading-relaxed mt-1">
-                        {data.notes}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Signature Block */}
-                  <div style={{ marginTop: `${data.signatureSpacing}px` }} className="pb-4">
-                    <p className="text-sm font-bold text-gray-800 mb-6">Thank You</p>
-                    
-                    {/* E-Signature Image */}
-                    {data.signatureImage && (
-                      <div className="mb-4">
-                        <img 
-                          src={data.signatureImage} 
-                          alt="Signature" 
-                          className="h-16 w-auto object-contain"
-                        />
+                  {/* Notes + Signature Block - Move Together */}
+                  <div style={{ marginTop: `${data.signatureSpacing}px` }}>
+                    {/* Notes */}
+                    {data.notes && (
+                      <div className="mb-8">
+                        <h4 className="font-bold text-gray-800 mb-2 text-xs uppercase border-b border-gray-300 inline-block pb-1">Note / Terms & Conditions:</h4>
+                        <div className="text-xs text-gray-600 whitespace-pre-wrap leading-relaxed mt-1">
+                          {data.notes}
+                        </div>
                       </div>
                     )}
-                    
-                    <div className="inline-block text-left">
-                      <div className="w-48 border-t-2 border-gray-900 mb-2"></div>
-                      <p className="text-base font-bold text-gray-900">Shakhawat Hossain</p>
-                      <p className="text-xs text-gray-500 font-semibold tracking-wide">Village Builders</p>
+
+                    {/* Signature Block */}
+                    <div className="pb-4">
+                      <p className="text-sm font-bold text-gray-800 mb-6">Thank You</p>
+                      
+                      {/* E-Signature Image */}
+                      {data.signatureImage && (
+                        <div className="mb-4">
+                          <img 
+                            src={data.signatureImage} 
+                            alt="Signature" 
+                            className="h-16 w-auto object-contain"
+                          />
+                        </div>
+                      )}
+                      
+                      <div className="inline-block text-left">
+                        <div className="w-48 border-t-2 border-gray-900 mb-2"></div>
+                        <p className="text-base font-bold text-gray-900">Shakhawat Hossain</p>
+                        <p className="text-xs text-gray-500 font-semibold tracking-wide">Village Builders</p>
+                      </div>
                     </div>
                   </div>
                 </div>
