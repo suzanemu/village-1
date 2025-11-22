@@ -207,7 +207,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                         const globalIndex = (pageIndex === 0 ? 0 : ITEMS_PER_FIRST_PAGE + (pageIndex - 1) * ITEMS_PER_PAGE) + idx + 1;
                         
                         return (
-                          <tr key={item.id || idx} className="border-b border-gray-200 hover:bg-gray-50 transition-colors odd:bg-gray-50/50">
+                          <tr key={item.id || idx} className="border-b border-gray-200 hover:bg-blue-50/50 transition-colors even:bg-gray-100/60 odd:bg-white">
                             <td className="p-2 md:p-3 text-center font-medium text-gray-400">{globalIndex}</td>
                             <td className="p-2 md:p-3 font-medium">{item.description}</td>
                             <td className="p-2 md:p-3 text-center">{item.unit}</td>
