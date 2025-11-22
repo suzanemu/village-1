@@ -311,7 +311,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
 
                       {/* Right Column - Totals Section (Always Present) */}
                       <div className="flex-1">
-                        <div className="bg-transparent border border-gray-300/50 rounded-xl overflow-hidden">
+                        <div className="bg-white shadow-md border border-gray-300/50 rounded-xl overflow-hidden">
                           <table className="w-full border-collapse text-sm">
                             <tbody>
                               <tr className="border-b border-gray-100">
