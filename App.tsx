@@ -749,7 +749,7 @@ const App: React.FC = () => {
                 <div className="flex items-center gap-4">
                   <input 
                     type="range" 
-                    min="12" 
+                    min="8" 
                     max="24" 
                     value={data.thankYouSize}
                     onChange={(e) => setData({...data, thankYouSize: parseInt(e.target.value)})}
@@ -769,7 +769,7 @@ const App: React.FC = () => {
                 <div className="flex items-center gap-4">
                   <input 
                     type="range" 
-                    min="80" 
+                    min="50" 
                     max="120" 
                     value={data.signatureBlockSize}
                     onChange={(e) => setData({...data, signatureBlockSize: parseInt(e.target.value)})}
