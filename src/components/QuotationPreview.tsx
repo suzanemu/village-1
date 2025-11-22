@@ -297,7 +297,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                         <div className="mt-auto" style={{ paddingTop: data.notes ? '0px' : '0px' }}>
                           <div style={{ transform: `scale(${data.signatureBlockSize / 100})`, transformOrigin: 'left top' }}>
                             <div>
-                              <p className="font-bold text-gray-800 mb-4" style={{ fontSize: `${data.thankYouSize}px` }}>
+                              <p className="font-bold text-gray-800 mb-1" style={{ fontSize: `${data.thankYouSize}px` }}>
                                 Thank You
                               </p>
                               
