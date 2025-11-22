@@ -71,6 +71,10 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
   // Calculate scale factor for header text based on logo width
   const defaultLogoWidth = 180; // Default logo width
   const headerTextScale = (data.logoWidth || defaultLogoWidth) / defaultLogoWidth;
+  
+  // Calculate dynamic spacing for header border based on logo size
+  const headerBottomMargin = 16 * headerTextScale; // Base 16px (mb-4), scales with logo
+  const headerBottomPadding = 8 * headerTextScale; // Base 8px (pb-2), scales with logo
 
   // Split items into pages
   const pages = [];
@@ -150,7 +154,13 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
               
               {/* --- Header Section --- */}
               {pageIndex === 0 ? (
-                <header className="flex justify-between items-start mb-4 border-b border-village-green pb-2">
+                <header 
+                  className="flex justify-between items-start border-b border-village-green"
+                  style={{
+                    marginBottom: `${headerBottomMargin}px`,
+                    paddingBottom: `${headerBottomPadding}px`
+                  }}
+                >
                   <VillageLogo 
                     className="scale-75 origin-top-left -mt-4 -ml-4" 
                     src={data.logoImage} 
