@@ -251,9 +251,6 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                   </div>
                 </div>
               )}
-
-              {/* Decorative Bottom Bar - On Every Page */}
-              <div className="absolute bottom-0 left-0 w-full h-3 bg-gradient-to-r from-village-blue to-village-green z-20"></div>
             </div>
           </div>
         );
