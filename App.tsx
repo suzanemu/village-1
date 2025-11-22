@@ -558,26 +558,45 @@ const App: React.FC = () => {
               </div>
             </div>
             
-            {/* Signature Position Adjuster */}
+            {/* Vertical Page Control Slider */}
             <div className="mt-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
-              <label className="block text-xs font-bold text-slate-600 mb-2 flex items-center gap-2">
+              <label className="block text-xs font-bold text-slate-600 mb-3 flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
                 </svg>
-                SIGNATURE POSITION: {data.signatureSpacing}px
+                PAGE LAYOUT CONTROL
               </label>
-              <input 
-                type="range" 
-                min="0" 
-                max="200" 
-                step="4"
-                value={data.signatureSpacing}
-                onChange={(e) => setData({...data, signatureSpacing: parseInt(e.target.value)})}
-                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-village-blue"
-              />
-              <div className="flex justify-between text-[10px] text-slate-400 mt-1">
-                <span>Closer to content</span>
-                <span>More space</span>
+              <div className="flex gap-6 items-center">
+                {/* Vertical Slider */}
+                <div className="flex flex-col items-center">
+                  <span className="text-[10px] text-slate-500 mb-2 font-medium">Push to Page 2</span>
+                  <input 
+                    type="range" 
+                    min="0" 
+                    max="12" 
+                    step="1"
+                    value={data.signatureSpacing}
+                    onChange={(e) => setData({...data, signatureSpacing: parseInt(e.target.value)})}
+                    className="h-32 appearance-none bg-slate-200 rounded-lg cursor-pointer accent-village-blue"
+                    style={{
+                      writingMode: 'bt-lr',
+                      WebkitAppearance: 'slider-vertical',
+                      width: '8px'
+                    }}
+                  />
+                  <span className="text-[10px] text-slate-500 mt-2 font-medium">Pull to Page 1</span>
+                </div>
+                
+                {/* Description */}
+                <div className="flex-1 text-xs text-slate-600 leading-relaxed">
+                  <p className="mb-2">
+                    <strong>Current: {data.signatureSpacing}/12</strong>
+                  </p>
+                  <p className="text-[11px] text-slate-500">
+                    Slide <strong>down</strong> to pull signature block to page 1 when there's space.
+                    Slide <strong>up</strong> to push it to page 2 for cleaner layout.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
