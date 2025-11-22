@@ -228,8 +228,8 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                     )}
 
                     {/* Signature Block */}
-                    <div className="pb-4">
-                      <p className="text-sm font-bold text-gray-800 mb-2">Thank You</p>
+                    <div className="pb-4" style={{ transform: `scale(${data.signatureBlockSize / 100})`, transformOrigin: 'left top' }}>
+                      <p className="font-bold text-gray-800 mb-2" style={{ fontSize: `${data.thankYouSize}px` }}>Thank You</p>
                       
                       {/* E-Signature Image */}
                       {data.signatureImage && (
