@@ -81,7 +81,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
               {/* --- Header Section --- */}
               {pageIndex === 0 ? (
                 // Full Header (Page 1)
-                <header className="flex justify-between items-start mb-6 border-b-2 border-village-green pb-4">
+                <header className="flex justify-between items-start mb-6 border-b border-village-green pb-4">
                   <VillageLogo 
                     className="scale-75 origin-top-left -mt-4 -ml-4" 
                     src={data.logoImage} 
