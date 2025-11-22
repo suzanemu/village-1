@@ -391,7 +391,10 @@ const App: React.FC = () => {
                         />
                       </div>
                       <div className="mb-2">
-                        <label className="block text-[10px] text-amber-600 font-bold mb-1">VERTICAL POSITION</label>
+                        <label className="block text-[10px] text-amber-600 font-bold mb-1 flex items-center justify-between">
+                          <span>VERTICAL POSITION</span>
+                          <span className="text-xs font-bold text-amber-700">{data.watermarkVerticalPosition}</span>
+                        </label>
                         <input 
                           type="range" 
                           min="0" 
