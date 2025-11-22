@@ -270,7 +270,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                       <div className="flex-1 flex flex-col">
                         {/* Notes Section - Only takes space needed */}
                         {data.notes && (
-                          <div className="bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200 rounded-xl p-5 shadow-sm mb-6">
+                          <div className="bg-transparent border border-gray-300/50 rounded-xl p-5 mb-6">
                             <div className="flex items-center gap-2 mb-3">
                               <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Terms & Conditions</h4>
                             </div>
@@ -311,7 +311,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
 
                       {/* Right Column - Totals Section (Always Present) */}
                       <div className="flex-1">
-                        <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                        <div className="bg-transparent border border-gray-300/50 rounded-xl overflow-hidden">
                           <table className="w-full border-collapse text-sm">
                             <tbody>
                               <tr className="border-b border-gray-100">
@@ -338,15 +338,15 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                           </table>
                           
                           {/* Grand Total Card */}
-                          <div className="bg-gradient-to-br from-emerald-500 to-green-600 p-5">
+                          <div className="bg-transparent border-t-2 border-gray-300/50 p-5">
                             <div className="flex justify-between items-center mb-2">
-                              <span className="font-bold text-white text-base uppercase tracking-wider">Grand Total</span>
-                              <span className="font-bold text-white text-3xl">
+                              <span className="font-bold text-gray-900 text-base uppercase tracking-wider">Grand Total</span>
+                              <span className="font-bold text-gray-900 text-3xl">
                                 ${grandTotal.toLocaleString()}
                               </span>
                             </div>
                             {/* Grand Total in Words */}
-                            <div className="text-xs text-green-50 italic border-t border-green-400/30 pt-2 mt-2">
+                            <div className="text-xs text-gray-600 italic border-t border-gray-300/30 pt-2 mt-2">
                               <span className="font-semibold">In word:</span> {grandTotalInWords} taka only
                             </div>
                           </div>
