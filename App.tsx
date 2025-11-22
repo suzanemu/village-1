@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { Plus, Trash2, Download, Sparkles, FileText, Loader2, Menu, X, Eye, EyeOff, Upload, Image as ImageIcon, DownloadCloud, UploadCloud, Check } from 'lucide-react';
+import { Plus, Trash2, Download, Sparkles, FileText, Loader2, Menu, X, Eye, EyeOff, Upload, Image as ImageIcon, DownloadCloud, UploadCloud, Check, RotateCcw } from 'lucide-react';
 import { QuotationData, QuotationItem, INITIAL_DATA } from './types';
 import { QuotationPreview } from './src/components/QuotationPreview';
 import { generateQuotationData } from './src/services/geminiService';
@@ -17,6 +17,7 @@ const App: React.FC = () => {
   const [prompt, setPrompt] = useState("");
   const [isDownloading, setIsDownloading] = useState(false);
   const [showMobilePreview, setShowMobilePreview] = useState(false);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
   
   const [notification, setNotification] = useState<{message: string, type: 'success' | 'error'} | null>(null);
   
@@ -61,6 +62,13 @@ const App: React.FC = () => {
   const showNotification = (message: string, type: 'success' | 'error' = 'success') => {
     setNotification({ message, type });
     setTimeout(() => setNotification(null), 4000);
+  };
+
+  const handleReset = () => {
+    setData(INITIAL_DATA);
+    localStorage.removeItem('village_quotation_draft');
+    setShowResetConfirm(false);
+    showNotification("All data has been reset!");
   };
 
   const handleExportJSON = () => {
@@ -239,6 +247,37 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row font-sans text-slate-800">
       
+      {/* Reset Confirmation Dialog */}
+      {showResetConfirm && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-10 w-10 bg-red-100 rounded-full flex items-center justify-center">
+                <RotateCcw className="w-5 h-5 text-red-600" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900">Reset All Data?</h3>
+            </div>
+            <p className="text-sm text-slate-600 mb-6">
+              This will clear all your current data including items, client details, images, and settings. This action cannot be undone.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setShowResetConfirm(false)}
+                className="flex-1 px-4 py-2 border border-slate-300 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleReset}
+                className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-medium transition-colors"
+              >
+                Reset Everything
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* --- Left Panel: Editor --- */}
       <div className={`w-full md:w-5/12 lg:w-1/3 h-screen overflow-y-auto bg-white border-r border-slate-200 z-20 flex flex-col transition-transform duration-300 fixed md:relative ${showMobilePreview ? '-translate-x-full md:translate-x-0' : 'translate-x-0'}`}>
         
@@ -274,6 +313,15 @@ const App: React.FC = () => {
               >
                 <DownloadCloud className="w-4 h-4" />
                 <span className="hidden sm:inline">Save</span>
+              </button>
+
+              <button 
+                onClick={() => setShowResetConfirm(true)}
+                className="flex items-center gap-1 text-xs font-medium text-red-600 hover:bg-red-50 px-2 py-2 rounded-lg transition-colors"
+                title="Reset All Data"
+              >
+                <RotateCcw className="w-4 h-4" />
+                <span className="hidden sm:inline">Reset</span>
               </button>
             </div>
           </div>
