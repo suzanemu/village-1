@@ -65,16 +65,28 @@ const App: React.FC = () => {
   };
 
   const handleReset = () => {
-    setData(INITIAL_DATA);
+    // Preserve images and their settings
+    const imagesToKeep = {
+      logoImage: data.logoImage,
+      signatureImage: data.signatureImage,
+      watermarkImage: data.watermarkImage,
+      logoWidth: data.logoImage ? data.logoWidth : INITIAL_DATA.logoWidth,
+      watermarkWidth: data.watermarkImage ? data.watermarkWidth : INITIAL_DATA.watermarkWidth,
+      watermarkVerticalPosition: data.watermarkImage ? data.watermarkVerticalPosition : INITIAL_DATA.watermarkVerticalPosition
+    };
+    
+    // Reset all data but keep images
+    setData({
+      ...INITIAL_DATA,
+      ...imagesToKeep
+    });
+    
     localStorage.removeItem('village_quotation_draft');
     
-    // Clear file input refs to reset uploaded images
-    if (fileInputRef.current) fileInputRef.current.value = '';
-    if (signatureInputRef.current) signatureInputRef.current.value = '';
-    if (watermarkInputRef.current) watermarkInputRef.current.value = '';
+    // Do NOT clear file input refs - keep uploaded images
     
     setShowResetConfirm(false);
-    showNotification("All data has been reset!");
+    showNotification("Text data has been reset! Images preserved.");
   };
 
   const handleExportJSON = () => {
