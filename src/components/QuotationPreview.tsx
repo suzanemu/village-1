@@ -86,7 +86,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
   const subTotal = calculateTotal(data.items);
   const vatAmount = subTotal * ((data.vatRate || 0) / 100);
   const taxAmount = subTotal * ((data.taxRate || 0) / 100);
-  const grandTotal = subTotal + vatAmount + taxAmount;
+  const grandTotal = Math.ceil(subTotal + vatAmount + taxAmount);
   const grandTotalInWords = numberToWords(grandTotal);
   const hasTax = (data.vatRate || 0) > 0 || (data.taxRate || 0) > 0;
 
@@ -267,7 +267,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                               <div className="bg-green-100 rounded-lg p-4 flex justify-between items-center">
                                 <span className="font-bold text-green-700 text-base uppercase">Grand Total</span>
                                 <span className="font-bold text-green-700 text-2xl">
-                                  ${grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                  ${grandTotal.toLocaleString()}
                                 </span>
                               </div>
                               {/* Grand Total in Words */}
