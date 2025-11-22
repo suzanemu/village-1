@@ -319,7 +319,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
             </div>
 
             {/* Bottom Brand Strip - Appears on Every Page */}
-            <div className="absolute bottom-0 left-[15mm] md:left-[20mm] right-[15mm] md:right-[20mm] z-20 pt-4 pb-2 border-t-2 border-gray-200 flex justify-between items-center text-xs text-gray-500 bg-white">
+            <div className="absolute bottom-0 left-[15mm] md:left-[20mm] right-[15mm] md:right-[20mm] z-20 pt-4 pb-2 border-t-2 border-gray-200 flex justify-between items-center text-xs text-gray-500">
               <p className="flex items-center gap-2">
                 {data.logoImage ? (
                   <img 
