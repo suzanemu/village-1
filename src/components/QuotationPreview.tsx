@@ -159,8 +159,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                   className="flex justify-between items-start border-b border-village-green"
                   style={{
                     marginBottom: `${headerBottomMargin}px`,
-                    paddingBottom: `${headerBottomPadding}px`,
-                    marginTop: `${data.headerVerticalPosition}px`
+                    paddingBottom: `${headerBottomPadding}px`
                   }}
                 >
                   <VillageLogo 
@@ -199,158 +198,161 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                 </header>
               )}
 
-              {/* --- Meta Info (Only Page 1) --- */}
-              {pageIndex === 0 && (
-                <>
-                  <div className="flex justify-between items-end mb-8 min-h-[80px]">
-                    <div>
-                      {!data.hideClientDetails && (
-                        <>
-                          <p className="text-gray-500 mb-1 text-xs">To,</p>
-                          <p className="font-bold text-gray-800">{data.toName}</p>
-                          <p className="text-gray-800">{data.toCompany}</p>
-                          <p className="text-gray-600 max-w-xs text-xs mt-1">{data.toAddress}</p>
-                        </>
-                      )}
-                    </div>
-                    <div className="text-right">
-                      <p className="font-bold text-gray-800">Date: <span className="font-normal">{data.date}</span></p>
-                    </div>
-                  </div>
-                  <div className="mb-6">
-                    <p className="font-bold text-gray-800 border-b border-gray-300 inline-block pb-1">
-                      Subject: <span className="uppercase">{data.subject}</span>
-                    </p>
-                  </div>
-                </>
-              )}
-
-              {/* --- Items Table --- */}
-              {page.items.length > 0 && (
-                <div>
-                  <table className="w-full border-collapse mb-2">
-                    <thead>
-                      <tr className="bg-village-blue text-white text-xs uppercase tracking-wider">
-                        <th className="p-1.5 md:p-2 text-left rounded-tl-lg w-12">SL</th>
-                        <th className="p-1.5 md:p-2 text-left">Description</th>
-                        <th className="p-1.5 md:p-2 text-center w-16">Unit</th>
-                        <th className="p-1.5 md:p-2 text-center w-20">Qty</th>
-                        <th className="p-1.5 md:p-2 text-right w-24">Unit Price</th>
-                        <th className="p-1.5 md:p-2 text-right rounded-tr-lg w-28">Total</th>
-                      </tr>
-                    </thead>
-                    <tbody className="text-gray-700 text-xs md:text-sm">
-                      {page.items.map((item, idx) => {
-                        const globalIndex = (pageIndex === 0 ? 0 : ITEMS_PER_FIRST_PAGE + (pageIndex - 1) * ITEMS_PER_PAGE) + idx + 1;
-                        
-                        return (
-                          <tr key={item.id || idx} className="border-b border-gray-200 hover:bg-blue-50/50 transition-colors even:bg-gray-100/60 odd:bg-white">
-                            <td className="p-2 md:p-3 text-center font-medium text-gray-400">{globalIndex}</td>
-                            <td className="p-2 md:p-3 font-medium">{item.description}</td>
-                            <td className="p-2 md:p-3 text-center">{item.unit}</td>
-                            <td className="p-2 md:p-3 text-center">{item.quantity}</td>
-                            <td className="p-2 md:p-3 text-right">{item.unitCost.toLocaleString()}</td>
-                            <td className="p-2 md:p-3 text-right font-bold text-gray-900">{(item.quantity * item.unitCost).toLocaleString()}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-
-              {/* --- Footer (Totals + Notes + Signatures) - Only on Last Page --- */}
-              {showFooter && (
-                <div className="mt-4">
-
-                  {/* Notes and Totals - Side by Side */}
-                  <div className="flex gap-6 mb-8 border-t-2 border-gray-100 pt-6">
-                    {/* Notes Section - Left Side */}
-                    {data.notes && (
-                      <div className="flex-1 bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200 rounded-xl p-5 shadow-sm">
-                        <div className="flex items-center gap-2 mb-3">
-                          <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Terms & Conditions</h4>
-                        </div>
-                        <div className="text-xs text-gray-600 whitespace-pre-wrap leading-relaxed">
-                          {data.notes}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Totals Section - Right Side */}
-                    <div className="flex-1">
-                      <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-                        <table className="w-full border-collapse text-sm">
-                          <tbody>
-                            <tr className="border-b border-gray-100">
-                              <td className="p-3 text-right font-medium text-gray-600">Sub-total</td>
-                              <td className="p-3 text-right font-bold text-gray-800 text-base">${subTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-                            </tr>
-                            {data.vatRate > 0 && (
-                              <tr className="border-b border-gray-100">
-                                <td className="p-3 text-right font-medium text-gray-600">Tax ({data.vatRate}%)</td>
-                                <td className="p-3 text-right font-bold text-gray-800 text-base">
-                                  ${vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                                </td>
-                              </tr>
-                            )}
-                            {data.taxRate > 0 && (
-                              <tr className="border-b border-gray-100">
-                                <td className="p-3 text-right font-medium text-gray-600">Tax ({data.taxRate}%)</td>
-                                <td className="p-3 text-right font-bold text-gray-800 text-base">
-                                  ${taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                                </td>
-                              </tr>
-                            )}
-                          </tbody>
-                        </table>
-                        
-                        {/* Grand Total Card */}
-                        <div className="bg-gradient-to-br from-emerald-500 to-green-600 p-5">
-                          <div className="flex justify-between items-center mb-2">
-                            <span className="font-bold text-white text-base uppercase tracking-wider">Grand Total</span>
-                            <span className="font-bold text-white text-3xl">
-                              ${grandTotal.toLocaleString()}
-                            </span>
-                          </div>
-                          {/* Grand Total in Words */}
-                          <div className="text-xs text-green-50 italic border-t border-green-400/30 pt-2 mt-2">
-                            <span className="font-semibold">In word:</span> {grandTotalInWords} taka only
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Signature Block with Modern Design */}
-                  <div style={{ marginTop: `${data.signatureSpacing}px` }}>
-                    <div className="pb-4" style={{ transform: `scale(${data.signatureBlockSize / 100})`, transformOrigin: 'left top' }}>
+              {/* --- Content Area (moves with headerVerticalPosition) --- */}
+              <div style={{ marginTop: pageIndex === 0 ? `${data.headerVerticalPosition}px` : '0px' }}>
+                {/* --- Meta Info (Only Page 1) --- */}
+                {pageIndex === 0 && (
+                  <>
+                    <div className="flex justify-between items-end mb-8 min-h-[80px]">
                       <div>
-                        <p className="font-bold text-gray-800 mb-4" style={{ fontSize: `${data.thankYouSize}px` }}>
-                          Thank You
-                        </p>
-                        
-                        {/* E-Signature Image */}
-                        {data.signatureImage && (
-                          <div className="mb-4">
-                            <img 
-                              src={data.signatureImage} 
-                              alt="Signature" 
-                              className="h-16 w-auto object-contain"
-                            />
-                          </div>
+                        {!data.hideClientDetails && (
+                          <>
+                            <p className="text-gray-500 mb-1 text-xs">To,</p>
+                            <p className="font-bold text-gray-800">{data.toName}</p>
+                            <p className="text-gray-800">{data.toCompany}</p>
+                            <p className="text-gray-600 max-w-xs text-xs mt-1">{data.toAddress}</p>
+                          </>
                         )}
-                        
-                        <div className="inline-block text-left">
-                          <p className="text-base font-bold text-gray-900">Shakhawat Hossain</p>
-                          <p className="text-xs text-gray-600 font-semibold tracking-wide uppercase">Authorized Signature</p>
-                          <p className="text-xs text-village-blue font-medium mt-1">Village Builders</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-gray-800">Date: <span className="font-normal">{data.date}</span></p>
+                      </div>
+                    </div>
+                    <div className="mb-6">
+                      <p className="font-bold text-gray-800 border-b border-gray-300 inline-block pb-1">
+                        Subject: <span className="uppercase">{data.subject}</span>
+                      </p>
+                    </div>
+                  </>
+                )}
+
+                {/* --- Items Table --- */}
+                {page.items.length > 0 && (
+                  <div>
+                    <table className="w-full border-collapse mb-2">
+                      <thead>
+                        <tr className="bg-village-blue text-white text-xs uppercase tracking-wider">
+                          <th className="p-1.5 md:p-2 text-left rounded-tl-lg w-12">SL</th>
+                          <th className="p-1.5 md:p-2 text-left">Description</th>
+                          <th className="p-1.5 md:p-2 text-center w-16">Unit</th>
+                          <th className="p-1.5 md:p-2 text-center w-20">Qty</th>
+                          <th className="p-1.5 md:p-2 text-right w-24">Unit Price</th>
+                          <th className="p-1.5 md:p-2 text-right rounded-tr-lg w-28">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-gray-700 text-xs md:text-sm">
+                        {page.items.map((item, idx) => {
+                          const globalIndex = (pageIndex === 0 ? 0 : ITEMS_PER_FIRST_PAGE + (pageIndex - 1) * ITEMS_PER_PAGE) + idx + 1;
+                          
+                          return (
+                            <tr key={item.id || idx} className="border-b border-gray-200 hover:bg-blue-50/50 transition-colors even:bg-gray-100/60 odd:bg-white">
+                              <td className="p-2 md:p-3 text-center font-medium text-gray-400">{globalIndex}</td>
+                              <td className="p-2 md:p-3 font-medium">{item.description}</td>
+                              <td className="p-2 md:p-3 text-center">{item.unit}</td>
+                              <td className="p-2 md:p-3 text-center">{item.quantity}</td>
+                              <td className="p-2 md:p-3 text-right">{item.unitCost.toLocaleString()}</td>
+                              <td className="p-2 md:p-3 text-right font-bold text-gray-900">{(item.quantity * item.unitCost).toLocaleString()}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+
+                {/* --- Footer (Totals + Notes + Signatures) - Only on Last Page --- */}
+                {showFooter && (
+                  <div className="mt-4">
+
+                    {/* Notes and Totals - Side by Side */}
+                    <div className="flex gap-6 mb-8 border-t-2 border-gray-100 pt-6">
+                      {/* Notes Section - Left Side */}
+                      {data.notes && (
+                        <div className="flex-1 bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200 rounded-xl p-5 shadow-sm">
+                          <div className="flex items-center gap-2 mb-3">
+                            <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Terms & Conditions</h4>
+                          </div>
+                          <div className="text-xs text-gray-600 whitespace-pre-wrap leading-relaxed">
+                            {data.notes}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Totals Section - Right Side */}
+                      <div className="flex-1">
+                        <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                          <table className="w-full border-collapse text-sm">
+                            <tbody>
+                              <tr className="border-b border-gray-100">
+                                <td className="p-3 text-right font-medium text-gray-600">Sub-total</td>
+                                <td className="p-3 text-right font-bold text-gray-800 text-base">${subTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                              </tr>
+                              {data.vatRate > 0 && (
+                                <tr className="border-b border-gray-100">
+                                  <td className="p-3 text-right font-medium text-gray-600">Tax ({data.vatRate}%)</td>
+                                  <td className="p-3 text-right font-bold text-gray-800 text-base">
+                                    ${vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                  </td>
+                                </tr>
+                              )}
+                              {data.taxRate > 0 && (
+                                <tr className="border-b border-gray-100">
+                                  <td className="p-3 text-right font-medium text-gray-600">Tax ({data.taxRate}%)</td>
+                                  <td className="p-3 text-right font-bold text-gray-800 text-base">
+                                    ${taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                  </td>
+                                </tr>
+                              )}
+                            </tbody>
+                          </table>
+                          
+                          {/* Grand Total Card */}
+                          <div className="bg-gradient-to-br from-emerald-500 to-green-600 p-5">
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="font-bold text-white text-base uppercase tracking-wider">Grand Total</span>
+                              <span className="font-bold text-white text-3xl">
+                                ${grandTotal.toLocaleString()}
+                              </span>
+                            </div>
+                            {/* Grand Total in Words */}
+                            <div className="text-xs text-green-50 italic border-t border-green-400/30 pt-2 mt-2">
+                              <span className="font-semibold">In word:</span> {grandTotalInWords} taka only
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Signature Block with Modern Design */}
+                    <div style={{ marginTop: `${data.signatureSpacing}px` }}>
+                      <div className="pb-4" style={{ transform: `scale(${data.signatureBlockSize / 100})`, transformOrigin: 'left top' }}>
+                        <div>
+                          <p className="font-bold text-gray-800 mb-4" style={{ fontSize: `${data.thankYouSize}px` }}>
+                            Thank You
+                          </p>
+                          
+                          {/* E-Signature Image */}
+                          {data.signatureImage && (
+                            <div className="mb-4">
+                              <img 
+                                src={data.signatureImage} 
+                                alt="Signature" 
+                                className="h-16 w-auto object-contain"
+                              />
+                            </div>
+                          )}
+                          
+                          <div className="inline-block text-left">
+                            <p className="text-base font-bold text-gray-900">Shakhawat Hossain</p>
+                            <p className="text-xs text-gray-600 font-semibold tracking-wide uppercase">Authorized Signature</p>
+                            <p className="text-xs text-village-blue font-medium mt-1">Village Builders</p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
 
             {/* Bottom Brand Strip - Appears on Every Page */}
