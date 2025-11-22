@@ -217,7 +217,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                           <tr>
                             <td colSpan={2} className="pt-4">
                               <div className="bg-green-100 rounded-lg p-4 flex justify-between items-center">
-                                <span className="font-bold text-green-700 text-base uppercase">Total Amount</span>
+                                <span className="font-bold text-green-700 text-base uppercase">Grand Total</span>
                                 <span className="font-bold text-green-700 text-2xl">
                                   ${grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                 </span>
