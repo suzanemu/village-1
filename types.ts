@@ -9,6 +9,8 @@ export interface QuotationItem {
 export interface QuotationData {
   logoImage?: string;
   logoWidth: number;
+  watermarkImage?: string;
+  watermarkWidth: number;
   date: string;
   toName: string;
   toCompany: string;
@@ -27,6 +29,7 @@ export interface QuotationData {
 
 export const INITIAL_DATA: QuotationData = {
   logoWidth: 200,
+  watermarkWidth: 500,
   date: new Date().toISOString().split('T')[0],
   toName: "Mr. John Doe",
   toCompany: "ABC Construction Ltd.",
