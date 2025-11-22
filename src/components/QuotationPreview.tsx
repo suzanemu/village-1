@@ -224,7 +224,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                   )}
 
                   {/* Signature Block */}
-                  <div className="pt-4 pb-4">
+                  <div style={{ marginTop: `${data.signatureSpacing}px` }} className="pb-4">
                     <p className="text-sm font-bold text-gray-800 mb-6">Thank You</p>
                     
                     {/* E-Signature Image */}

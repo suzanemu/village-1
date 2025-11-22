@@ -7,34 +7,41 @@ export interface QuotationItem {
 }
 
 export interface QuotationData {
+  logoImage?: string;
+  logoWidth: number;
+  date: string;
   toName: string;
   toCompany: string;
   toAddress: string;
-  date: string;
   subject: string;
   items: QuotationItem[];
   notes: string;
   vatRate: number;
   taxRate: number;
   hideClientDetails: boolean;
-  logoImage?: string;
-  logoWidth: number;
   signatureImage?: string;
+  signatureSpacing: number; // Spacing before signature block in pixels
 }
 
 export const INITIAL_DATA: QuotationData = {
-  toName: "Project Manager",
-  toCompany: "Shimizu Corporation",
-  toAddress: "Dhaka, Bangladesh",
+  logoWidth: 200,
   date: new Date().toISOString().split('T')[0],
-  subject: "QUOTATION FOR SITE OFFICE RENOVATION",
+  toName: "Mr. John Doe",
+  toCompany: "ABC Construction Ltd.",
+  toAddress: "123 Main Street, Dhaka-1200, Bangladesh",
+  subject: "Quotation for Construction Work",
   items: [
-    { id: '1', description: "Excavation Work and Back Filling", unit: "M3", quantity: 1, unitCost: 90090 },
-    { id: '2', description: "Floor Finishing Work", unit: "L/S", quantity: 1, unitCost: 24000 },
+    {
+      id: "1",
+      description: "Excavation Work and Back Filling",
+      unit: "M3",
+      quantity: 1,
+      unitCost: 90090
+    }
   ],
-  notes: "1. Payment terms: 50% advance, 50% upon completion.\n2. Validity: 15 days from date of issue.",
+  notes: "1. All materials will be supplied by us.\n2. Payment terms: 50% advance, 50% on completion.\n3. Validity: 30 days from the date of quotation.",
   vatRate: 0,
   taxRate: 0,
   hideClientDetails: false,
-  logoWidth: 160,
+  signatureSpacing: 32 // Default spacing (32px = 8 * 4 in Tailwind units)
 };

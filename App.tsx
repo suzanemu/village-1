@@ -557,6 +557,29 @@ const App: React.FC = () => {
                 {!data.signatureImage && <p className="text-[10px] text-slate-400 mt-1">Upload your e-signature image</p>}
               </div>
             </div>
+            
+            {/* Signature Position Adjuster */}
+            <div className="mt-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <label className="block text-xs font-bold text-slate-600 mb-2 flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                </svg>
+                SIGNATURE POSITION: {data.signatureSpacing}px
+              </label>
+              <input 
+                type="range" 
+                min="0" 
+                max="200" 
+                step="4"
+                value={data.signatureSpacing}
+                onChange={(e) => setData({...data, signatureSpacing: parseInt(e.target.value)})}
+                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-village-blue"
+              />
+              <div className="flex justify-between text-[10px] text-slate-400 mt-1">
+                <span>Closer to content</span>
+                <span>More space</span>
+              </div>
+            </div>
           </section>
         </div>
       </div>
