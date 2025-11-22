@@ -264,21 +264,52 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                 {showFooter && (
                   <div className="mt-4">
 
-                    {/* Notes and Totals - Side by Side */}
+                    {/* Notes and Totals - Side by Side with Signature Below Notes */}
                     <div className="flex gap-6 mb-8 border-t-2 border-gray-100 pt-6">
-                      {/* Notes Section - Left Side */}
-                      {data.notes && (
-                        <div className="flex-1 bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200 rounded-xl p-5 shadow-sm">
-                          <div className="flex items-center gap-2 mb-3">
-                            <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Terms & Conditions</h4>
+                      {/* Left Column - Notes + Signature */}
+                      <div className="flex-1 flex flex-col">
+                        {/* Notes Section - Only takes space needed */}
+                        {data.notes && (
+                          <div className="bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200 rounded-xl p-5 shadow-sm mb-6">
+                            <div className="flex items-center gap-2 mb-3">
+                              <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Terms & Conditions</h4>
+                            </div>
+                            <div className="text-xs text-gray-600 whitespace-pre-wrap leading-relaxed">
+                              {data.notes}
+                            </div>
                           </div>
-                          <div className="text-xs text-gray-600 whitespace-pre-wrap leading-relaxed">
-                            {data.notes}
+                        )}
+
+                        {/* Signature Block - Below Notes */}
+                        <div className="mt-auto" style={{ paddingTop: data.notes ? '0px' : '0px' }}>
+                          <div style={{ transform: `scale(${data.signatureBlockSize / 100})`, transformOrigin: 'left top' }}>
+                            <div>
+                              <p className="font-bold text-gray-800 mb-4" style={{ fontSize: `${data.thankYouSize}px` }}>
+                                Thank You
+                              </p>
+                              
+                              {/* E-Signature Image */}
+                              {data.signatureImage && (
+                                <div className="mb-4">
+                                  <img 
+                                    src={data.signatureImage} 
+                                    alt="Signature" 
+                                    className="h-16 w-auto object-contain"
+                                  />
+                                </div>
+                              )}
+                              
+                              <div className="inline-block text-left">
+                                <p className="text-base font-bold text-gray-900">Shakhawat Hossain</p>
+                                <p className="text-xs text-gray-600 font-semibold tracking-wide uppercase">Authorized Signature</p>
+                                <p className="text-xs text-village-blue font-medium mt-1">Village Builders</p>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      )}
+                      </div>
 
-                      {/* Totals Section - Right Side */}
+                      {/* Right Column - Totals Section (Always Present) */}
                       <div className="flex-1">
                         <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
                           <table className="w-full border-collapse text-sm">
@@ -318,34 +349,6 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                             <div className="text-xs text-green-50 italic border-t border-green-400/30 pt-2 mt-2">
                               <span className="font-semibold">In word:</span> {grandTotalInWords} taka only
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Signature Block with Modern Design */}
-                    <div style={{ marginTop: `${data.signatureSpacing}px` }}>
-                      <div className="pb-4" style={{ transform: `scale(${data.signatureBlockSize / 100})`, transformOrigin: 'left top' }}>
-                        <div>
-                          <p className="font-bold text-gray-800 mb-4" style={{ fontSize: `${data.thankYouSize}px` }}>
-                            Thank You
-                          </p>
-                          
-                          {/* E-Signature Image */}
-                          {data.signatureImage && (
-                            <div className="mb-4">
-                              <img 
-                                src={data.signatureImage} 
-                                alt="Signature" 
-                                className="h-16 w-auto object-contain"
-                              />
-                            </div>
-                          )}
-                          
-                          <div className="inline-block text-left">
-                            <p className="text-base font-bold text-gray-900">Shakhawat Hossain</p>
-                            <p className="text-xs text-gray-600 font-semibold tracking-wide uppercase">Authorized Signature</p>
-                            <p className="text-xs text-village-blue font-medium mt-1">Village Builders</p>
                           </div>
                         </div>
                       </div>
