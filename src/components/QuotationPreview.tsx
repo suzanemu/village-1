@@ -68,6 +68,10 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
     return items.reduce((acc, item) => acc + (item.quantity * item.unitCost), 0);
   };
 
+  // Calculate scale factor for header text based on logo width
+  const defaultLogoWidth = 180; // Default logo width
+  const headerTextScale = (data.logoWidth || defaultLogoWidth) / defaultLogoWidth;
+
   // Split items into pages
   const pages = [];
   const items = [...data.items];
@@ -152,7 +156,13 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                     src={data.logoImage} 
                     width={data.logoWidth}
                   />
-                  <div className="text-right text-gray-600">
+                  <div 
+                    className="text-right text-gray-600"
+                    style={{ 
+                      transform: `scale(${headerTextScale})`,
+                      transformOrigin: 'top right'
+                    }}
+                  >
                     <h2 className="text-xl font-script text-village-green font-bold mb-1">Village Builders</h2>
                     <p className="text-[10px] uppercase tracking-widest font-bold text-village-blue mb-2">General Constructor & Supplier</p>
                     <div className="text-xs leading-snug">
