@@ -86,7 +86,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
   const subTotal = calculateTotal(data.items);
   const vatAmount = subTotal * ((data.vatRate || 0) / 100);
   const taxAmount = subTotal * ((data.taxRate || 0) / 100);
-  const grandTotal = Math.ceil(subTotal + vatAmount + taxAmount);
+  const grandTotal = Math.round(subTotal + vatAmount + taxAmount);
   const grandTotalInWords = numberToWords(grandTotal);
   const hasTax = (data.vatRate || 0) > 0 || (data.taxRate || 0) > 0;
 
