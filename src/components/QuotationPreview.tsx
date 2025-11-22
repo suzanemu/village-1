@@ -177,57 +177,59 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
               {/* --- Footer (Totals + Notes + Signatures) - Only on Last Page --- */}
               {showFooter && (
                 <div className="mt-auto">
-                  {/* Totals Table */}
-                  <div className="mb-8 border-t-2 border-gray-100 pt-4">
-                     <table className="w-full border-collapse text-sm">
-                       <tbody>
-                         {hasTax && (
-                          <tr>
-                            <td className="p-2 text-right font-bold uppercase text-gray-600 w-3/4">Sub Total</td>
-                            <td className="p-2 text-right font-bold text-gray-800">{subTotal.toLocaleString()}</td>
-                          </tr>
-                         )}
-                         {data.vatRate > 0 && (
-                           <tr>
-                             <td className="p-2 text-right text-xs md:text-sm text-gray-600 border-t border-gray-100">VAT ({data.vatRate}%)</td>
-                             <td className="p-2 text-right text-xs md:text-sm text-gray-600 border-t border-gray-100">
-                               {vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                             </td>
-                           </tr>
-                         )}
-                         {data.taxRate > 0 && (
-                           <tr>
-                             <td className="p-2 text-right text-xs md:text-sm text-gray-600 border-t border-gray-100">Tax ({data.taxRate}%)</td>
-                             <td className="p-2 text-right text-xs md:text-sm text-gray-600 border-t border-gray-100">
-                               {taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-                             </td>
-                           </tr>
-                         )}
-                         <tr className={hasTax ? 'bg-village-blue/5' : ''}>
-                           <td className="p-3 text-right font-bold uppercase text-village-blue border-t-2 border-village-blue">
-                             {hasTax ? 'Grand Total' : 'Total Amount'}
-                           </td>
-                           <td className="p-3 text-right font-bold text-lg text-village-green border-t-2 border-village-blue">
-                             {grandTotal.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
-                           </td>
-                         </tr>
-                       </tbody>
-                     </table>
-                  </div>
-
-                  {/* Notes + Signature Block - Move Together */}
-                  <div style={{ marginTop: `${data.signatureSpacing}px` }}>
-                    {/* Notes */}
+                  {/* Notes and Totals - Side by Side */}
+                  <div className="flex gap-6 mb-8 border-t-2 border-gray-100 pt-4">
+                    {/* Notes Section - Left Side */}
                     {data.notes && (
-                      <div className="mb-8">
-                        <h4 className="font-bold text-gray-800 mb-2 text-xs uppercase border-b border-gray-300 inline-block pb-1">Note / Terms & Conditions:</h4>
-                        <div className="text-xs text-gray-600 whitespace-pre-wrap leading-relaxed mt-1">
+                      <div className="flex-1 border-2 border-gray-300 rounded-lg p-4">
+                        <h4 className="font-bold text-gray-800 mb-3 text-sm uppercase">Note / Terms & Conditions</h4>
+                        <div className="text-xs text-gray-600 whitespace-pre-wrap leading-relaxed">
                           {data.notes}
                         </div>
                       </div>
                     )}
 
-                    {/* Signature Block */}
+                    {/* Totals Section - Right Side */}
+                    <div className="flex-1">
+                      <table className="w-full border-collapse text-sm">
+                        <tbody>
+                          <tr>
+                            <td className="p-3 text-right font-medium text-gray-600">Sub-total</td>
+                            <td className="p-3 text-right font-bold text-gray-800 text-lg">${subTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                          </tr>
+                          {data.vatRate > 0 && (
+                            <tr className="border-t border-gray-200">
+                              <td className="p-3 text-right font-medium text-gray-600">Tax ({data.vatRate}%)</td>
+                              <td className="p-3 text-right font-bold text-gray-800 text-lg">
+                                ${vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                              </td>
+                            </tr>
+                          )}
+                          {data.taxRate > 0 && (
+                            <tr className="border-t border-gray-200">
+                              <td className="p-3 text-right font-medium text-gray-600">Tax ({data.taxRate}%)</td>
+                              <td className="p-3 text-right font-bold text-gray-800 text-lg">
+                                ${taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                              </td>
+                            </tr>
+                          )}
+                          <tr>
+                            <td colSpan={2} className="pt-4">
+                              <div className="bg-green-100 rounded-lg p-4 flex justify-between items-center">
+                                <span className="font-bold text-green-700 text-base uppercase">Total Amount</span>
+                                <span className="font-bold text-green-700 text-2xl">
+                                  ${grandTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                </span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  {/* Signature Block */}
+                  <div style={{ marginTop: `${data.signatureSpacing}px` }}>
                     <div className="pb-4" style={{ transform: `scale(${data.signatureBlockSize / 100})`, transformOrigin: 'left top' }}>
                       <p className="font-bold text-gray-800 mb-2" style={{ fontSize: `${data.thankYouSize}px` }}>Thank You</p>
                       
