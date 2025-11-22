@@ -338,7 +338,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                           </table>
                           
                           {/* Grand Total Card */}
-                          <div className="bg-transparent border-t-2 border-gray-300/50 p-5">
+                          <div className="bg-white/30 border-t-2 border-gray-300/50 p-5">
                             <div className="flex justify-between items-center mb-2">
                               <span className="font-bold text-gray-900 text-base uppercase tracking-wider">Grand Total</span>
                               <span className="font-bold text-gray-900 text-3xl">
