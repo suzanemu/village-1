@@ -26,6 +26,8 @@ export interface QuotationData {
   signatureSpacing: number; // Spacing before signature block in pixels
   thankYouSize: number; // Font size for "Thank You" text (12-24px)
   signatureBlockSize: number; // Scale for signature block (80-120%)
+  notesBoxWidth: number; // Width percentage for notes box (30-70%)
+  totalBoxWidth: number; // Width percentage for total box (30-70%)
 }
 
 export const INITIAL_DATA: QuotationData = {
@@ -52,5 +54,7 @@ export const INITIAL_DATA: QuotationData = {
   hideClientDetails: false,
   signatureSpacing: 32, // Default spacing (32px = 8 * 4 in Tailwind units)
   thankYouSize: 14, // Default 14px (text-sm)
-  signatureBlockSize: 100 // Default 100% scale
+  signatureBlockSize: 100, // Default 100% scale
+  notesBoxWidth: 50, // Default 50% (equal split)
+  totalBoxWidth: 50 // Default 50% (equal split)
 };

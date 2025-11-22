@@ -673,6 +673,51 @@ const App: React.FC = () => {
              />
           </section>
 
+          {/* Box Width Controls */}
+          <section>
+            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Layout Controls</h3>
+            
+            {/* Notes Box Width */}
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 mb-4">
+              <label className="block text-xs font-bold text-slate-600 mb-3">NOTES BOX WIDTH</label>
+              <div className="flex items-center gap-4">
+                <input 
+                  type="range" 
+                  min="30" 
+                  max="70" 
+                  value={data.notesBoxWidth}
+                  onChange={(e) => setData({...data, notesBoxWidth: parseInt(e.target.value), totalBoxWidth: 100 - parseInt(e.target.value)})}
+                  className="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-village-green"
+                />
+                <span className="text-sm font-bold text-slate-700 min-w-[60px] text-right">{data.notesBoxWidth}%</span>
+              </div>
+              <div className="flex justify-between text-[10px] text-slate-500 mt-1">
+                <span>Narrower</span>
+                <span>Wider</span>
+              </div>
+            </div>
+
+            {/* Total Box Width */}
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <label className="block text-xs font-bold text-slate-600 mb-3">TOTAL BOX WIDTH</label>
+              <div className="flex items-center gap-4">
+                <input 
+                  type="range" 
+                  min="30" 
+                  max="70" 
+                  value={data.totalBoxWidth}
+                  onChange={(e) => setData({...data, totalBoxWidth: parseInt(e.target.value), notesBoxWidth: 100 - parseInt(e.target.value)})}
+                  className="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-village-blue"
+                />
+                <span className="text-sm font-bold text-slate-700 min-w-[60px] text-right">{data.totalBoxWidth}%</span>
+              </div>
+              <div className="flex justify-between text-[10px] text-slate-500 mt-1">
+                <span>Narrower</span>
+                <span>Wider</span>
+              </div>
+            </div>
+          </section>
+
           {/* E-Signature Upload */}
           <section>
             <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">E-Signature</h3>
