@@ -142,7 +142,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
               {/* --- Items Table --- */}
               {page.items.length > 0 && (
                 <div className="flex-grow">
-                  <table className="w-full border-collapse mb-8">
+                  <table className="w-full border-collapse mb-2">
                     <thead>
                       <tr className="bg-village-blue text-white text-xs uppercase tracking-wider">
                         <th className="p-2 md:p-3 text-left rounded-tl-lg w-12">SL</th>
