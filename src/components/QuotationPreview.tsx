@@ -63,7 +63,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
         return (
           <div 
             key={pageIndex}
-            className="quotation-page bg-white shadow-2xl w-full max-w-[210mm] min-h-[297mm] p-[15mm] md:p-[20mm] text-sm relative flex flex-col shrink-0"
+            className="quotation-page bg-white shadow-2xl w-full max-w-[210mm] min-h-[297mm] px-[15mm] md:px-[20mm] pt-[8mm] md:pt-[10mm] pb-[15mm] md:pb-[20mm] text-sm relative flex flex-col shrink-0"
             style={{ width: '210mm', height: '297mm' }}
           >
              {/* Watermark Layer - On Every Page */}
