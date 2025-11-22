@@ -387,7 +387,7 @@ const App: React.FC = () => {
                 <input 
                   type="range" 
                   min="70" 
-                  max="130" 
+                  max="150" 
                   value={data.contentFontScale}
                   onChange={(e) => setData({...data, contentFontScale: parseInt(e.target.value)})}
                   className="flex-1 h-2 bg-purple-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
