@@ -67,6 +67,12 @@ const App: React.FC = () => {
   const handleReset = () => {
     setData(INITIAL_DATA);
     localStorage.removeItem('village_quotation_draft');
+    
+    // Clear file input refs to reset uploaded images
+    if (fileInputRef.current) fileInputRef.current.value = '';
+    if (signatureInputRef.current) signatureInputRef.current.value = '';
+    if (watermarkInputRef.current) watermarkInputRef.current.value = '';
+    
     setShowResetConfirm(false);
     showNotification("All data has been reset!");
   };
