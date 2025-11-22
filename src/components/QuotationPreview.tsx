@@ -145,12 +145,12 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                   <table className="w-full border-collapse mb-2">
                     <thead>
                       <tr className="bg-village-blue text-white text-xs uppercase tracking-wider">
-                        <th className="p-2 md:p-3 text-left rounded-tl-lg w-12">SL</th>
-                        <th className="p-2 md:p-3 text-left">Description</th>
-                        <th className="p-2 md:p-3 text-center w-16">Unit</th>
-                        <th className="p-2 md:p-3 text-center w-20">Qty</th>
-                        <th className="p-2 md:p-3 text-right w-24">Unit Price</th>
-                        <th className="p-2 md:p-3 text-right rounded-tr-lg w-28">Total</th>
+                        <th className="p-1.5 md:p-2 text-left rounded-tl-lg w-12">SL</th>
+                        <th className="p-1.5 md:p-2 text-left">Description</th>
+                        <th className="p-1.5 md:p-2 text-center w-16">Unit</th>
+                        <th className="p-1.5 md:p-2 text-center w-20">Qty</th>
+                        <th className="p-1.5 md:p-2 text-right w-24">Unit Price</th>
+                        <th className="p-1.5 md:p-2 text-right rounded-tr-lg w-28">Total</th>
                       </tr>
                     </thead>
                     <tbody className="text-gray-700 text-xs md:text-sm">
