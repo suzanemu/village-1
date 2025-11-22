@@ -7,9 +7,9 @@ interface QuotationPreviewProps {
 }
 
 // Configuration for pagination
-// Adjusted to ensure ample space for the signature block and prevent overlap
-const ITEMS_PER_FIRST_PAGE = 8;
-const ITEMS_PER_PAGE = 12;
+// Dynamic adjustment based on actual content space
+const ITEMS_PER_FIRST_PAGE = 12; // Increased from 8 to allow more items on first page
+const ITEMS_PER_PAGE = 15; // Increased for better space utilization
 
 // Helper function to convert number to words
 const numberToWords = (num: number): string => {
@@ -102,13 +102,26 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
   // Check if footer fits on the last page or needs a new one
   const lastPage = pages[pages.length - 1];
   
-  // Dynamic thresholds based on signature spacing control (0-12)
-  // Higher value = more aggressive (allow more items, pull footer to page 1)
-  // Lower value = more conservative (fewer items, push footer to page 2)
-  const thresholdFirstPage = 3 + data.signatureSpacing; 
-  const thresholdStandardPage = 6 + data.signatureSpacing; 
+  // Dynamic thresholds based on actual footer content and signature spacing
+  // Consider if notes exist and their length to determine space needed
+  const hasNotes = data.notes && data.notes.trim().length > 0;
+  const notesLines = hasNotes ? Math.ceil(data.notes.length / 80) : 0; // Rough estimate of lines
+  const hasSignatureImage = !!data.signatureImage;
   
-  const isLastPageFull = lastPage.items.length > (lastPage.type === 'first' ? thresholdFirstPage : thresholdStandardPage);
+  // Base capacity: how many items can fit with footer on each page type
+  // More aggressive values to minimize wasted space
+  const baseFirstPageCapacity = 10; // Can fit up to 10 items + footer on first page
+  const baseStandardPageCapacity = 13; // Can fit up to 13 items + footer on continuation
+  
+  // Adjust based on content
+  let firstPageCapacity = baseFirstPageCapacity - Math.floor(notesLines / 3);
+  let standardPageCapacity = baseStandardPageCapacity - Math.floor(notesLines / 3);
+  
+  // Signature spacing slider adjustment (0-12, where higher = more aggressive/pull to current page)
+  firstPageCapacity += Math.floor(data.signatureSpacing / 2);
+  standardPageCapacity += Math.floor(data.signatureSpacing / 2);
+  
+  const isLastPageFull = lastPage.items.length > (lastPage.type === 'first' ? firstPageCapacity : standardPageCapacity);
   
   if (isLastPageFull) {
     pages.push({ type: 'footer-only', items: [] });
