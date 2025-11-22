@@ -275,15 +275,15 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
 
                 {/* --- Footer (Totals + Notes + Signatures) - Only on Last Page --- */}
                 {showFooter && (
-                  <div className="mt-4">
+                  <div className="mt-1">
 
                     {/* Notes and Totals - Side by Side with Signature Below Notes */}
-                    <div className="flex gap-6 mb-8 border-t-2 border-gray-100 pt-6">
+                    <div className="flex gap-6 mb-4 border-t-2 border-gray-100 pt-2">
                       {/* Left Column - Notes + Signature */}
                       <div className="flex-1 flex flex-col">
                         {/* Notes Section - Only takes space needed */}
                         {data.notes && (
-                          <div className="bg-transparent border border-gray-300/50 rounded-xl p-5 mb-6">
+                          <div className="bg-transparent border border-gray-300/50 rounded-xl p-5 mb-4">
                             <div className="flex items-center gap-2 mb-3">
                               <h4 className="font-bold text-gray-800 text-xs uppercase tracking-wide">Terms & Conditions</h4>
                             </div>
