@@ -247,7 +247,6 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                     {data.notes && (
                       <div className="flex-1 bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200 rounded-xl p-5 shadow-sm">
                         <div className="flex items-center gap-2 mb-3">
-                          <div className="h-1 w-8 bg-gradient-to-r from-village-blue to-village-green rounded-full"></div>
                           <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Terms & Conditions</h4>
                         </div>
                         <div className="text-xs text-gray-600 whitespace-pre-wrap leading-relaxed">
