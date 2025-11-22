@@ -337,12 +337,12 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                         <div className="bg-white shadow-md border border-gray-300/50 rounded-xl overflow-hidden">
                           <table className="w-full border-collapse text-sm">
                             <tbody>
-                              <tr className="bg-gradient-to-r from-blue-200 to-sky-200 border-b border-gray-300/50">
+                              <tr className="bg-gradient-to-r from-blue-200 to-sky-200 border-b-2 border-gray-500">
                                 <td className="p-3 text-right font-medium text-gray-900">Sub-total</td>
                                 <td className="p-3 text-right font-bold text-gray-900 text-base">${subTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                               </tr>
                               {data.vatRate > 0 && (
-                                <tr className="bg-gradient-to-r from-blue-200 to-sky-200 border-b border-gray-300/50">
+                                <tr className="bg-gradient-to-r from-blue-200 to-sky-200 border-b-2 border-gray-500">
                                   <td className="p-3 text-right font-medium text-gray-900">Tax ({data.vatRate}%)</td>
                                   <td className="p-3 text-right font-bold text-gray-900 text-base">
                                     ${vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -350,7 +350,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                                 </tr>
                               )}
                               {data.taxRate > 0 && (
-                                <tr className="bg-gradient-to-r from-blue-200 to-sky-200 border-b border-gray-300/50">
+                                <tr className="bg-gradient-to-r from-blue-200 to-sky-200 border-b-2 border-gray-500">
                                   <td className="p-3 text-right font-medium text-gray-900">Tax ({data.taxRate}%)</td>
                                   <td className="p-3 text-right font-bold text-gray-900 text-base">
                                     ${taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -361,7 +361,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                           </table>
                           
                           {/* Grand Total Card */}
-                          <div className="bg-gradient-to-r from-emerald-200 to-green-200 border-t-2 border-gray-300/50 p-5">
+                          <div className="bg-gradient-to-r from-emerald-200 to-green-200 border-t-2 border-gray-500 p-5">
                             <div className="flex justify-between items-center mb-2">
                               <span className="font-bold text-gray-900 text-base uppercase tracking-wider">Grand Total</span>
                               <span className="font-bold text-gray-900 text-3xl">
