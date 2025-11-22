@@ -73,9 +73,9 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
   const headerTextScale = (data.logoWidth || defaultLogoWidth) / defaultLogoWidth;
   
   // Calculate dynamic spacing for header border based on logo size
-  // Reduced values to bring the line closer to logo and text
-  const headerBottomMargin = 6 * headerTextScale; // Reduced from 16px to 6px
-  const headerBottomPadding = 2 * headerTextScale; // Reduced from 8px to 2px
+  // Minimal values to bring the green line very close to logo and text
+  const headerBottomMargin = 2 * headerTextScale; // Minimal margin
+  const headerBottomPadding = 1 * headerTextScale; // Minimal padding
 
   // Split items into pages
   const pages = [];
