@@ -696,7 +696,7 @@ const App: React.FC = () => {
 
           {/* Notes */}
           <section>
-             <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Terms & Conditions</h3>
+             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Terms & Conditions</h3>
              <textarea 
                 value={data.notes}
                 onChange={e => setData({...data, notes: e.target.value})}
