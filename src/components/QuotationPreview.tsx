@@ -361,15 +361,15 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                           </table>
                           
                           {/* Grand Total Card */}
-                          <div className="bg-gradient-to-r from-emerald-500 to-green-600 border-t-2 border-gray-300/50 p-5">
+                          <div className="bg-gradient-to-r from-emerald-100 to-green-100 border-t-2 border-gray-300/50 p-5">
                             <div className="flex justify-between items-center mb-2">
-                              <span className="font-bold text-white text-base uppercase tracking-wider">Grand Total</span>
-                              <span className="font-bold text-white text-3xl">
+                              <span className="font-bold text-gray-800 text-base uppercase tracking-wider">Grand Total</span>
+                              <span className="font-bold text-gray-900 text-3xl">
                                 ${grandTotal.toLocaleString()}
                               </span>
                             </div>
                             {/* Grand Total in Words */}
-                            <div className="text-xs text-white/90 italic border-t border-white/30 pt-2 mt-2">
+                            <div className="text-xs text-gray-700 italic border-t border-gray-300 pt-2 mt-2">
                               <span className="font-semibold">In word:</span> {grandTotalInWords} taka only
                             </div>
                           </div>
