@@ -291,7 +291,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                     <div className="pb-4" style={{ transform: `scale(${data.signatureBlockSize / 100})`, transformOrigin: 'left top' }}>
                       <div className="bg-gradient-to-r from-gray-50 to-white border border-gray-200 rounded-xl p-6 shadow-sm">
                         <p className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-village-blue to-village-green mb-4" style={{ fontSize: `${data.thankYouSize}px` }}>
-                          Thank You for Your Business
+                          Thank You
                         </p>
                         
                         {/* E-Signature Image */}
