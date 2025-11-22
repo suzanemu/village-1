@@ -19,6 +19,7 @@ export interface QuotationData {
   hideClientDetails: boolean;
   logoImage?: string;
   logoWidth: number;
+  signatureImage?: string;
 }
 
 export const INITIAL_DATA: QuotationData = {

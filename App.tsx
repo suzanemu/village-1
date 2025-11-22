@@ -23,6 +23,7 @@ const App: React.FC = () => {
   const previewRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const jsonInputRef = useRef<HTMLInputElement>(null);
+  const signatureInputRef = useRef<HTMLInputElement>(null);
 
   // --- Auto-Save Draft ---
   useEffect(() => {
@@ -159,6 +160,17 @@ const App: React.FC = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         setData(prev => ({ ...prev, logoImage: reader.result as string }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSignatureUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setData(prev => ({ ...prev, signatureImage: reader.result as string }));
       };
       reader.readAsDataURL(file);
     }
@@ -485,6 +497,44 @@ const App: React.FC = () => {
                 onChange={e => setData({...data, notes: e.target.value})}
                 className="w-full border border-slate-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-village-green focus:border-transparent outline-none h-32 bg-white text-slate-900"
              />
+          </section>
+
+          {/* E-Signature Upload */}
+          <section>
+            <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">E-Signature</h3>
+            <div className="flex items-center gap-4">
+              <div className="h-20 w-full max-w-[200px] rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center overflow-hidden">
+                {data.signatureImage ? (
+                  <img src={data.signatureImage} alt="Signature" className="w-full h-full object-contain p-2" />
+                ) : (
+                  <ImageIcon className="w-6 h-6 text-slate-300" />
+                )}
+              </div>
+              <div className="flex-1">
+                <input 
+                  type="file" 
+                  ref={signatureInputRef}
+                  onChange={handleSignatureUpload}
+                  accept="image/*"
+                  className="hidden"
+                />
+                <button 
+                  onClick={() => signatureInputRef.current?.click()}
+                  className="text-sm font-medium text-village-blue border border-village-blue rounded-md px-3 py-1.5 hover:bg-blue-50 flex items-center gap-2 transition-colors mb-2"
+                >
+                  <Upload className="w-3.5 h-3.5" /> Upload Signature
+                </button>
+                {data.signatureImage && (
+                  <button 
+                    onClick={() => setData({...data, signatureImage: undefined})}
+                    className="text-xs font-medium text-red-600 hover:text-red-700 flex items-center gap-1"
+                  >
+                    <Trash2 className="w-3 h-3" /> Remove
+                  </button>
+                )}
+                {!data.signatureImage && <p className="text-[10px] text-slate-400 mt-1">Upload your e-signature image</p>}
+              </div>
+            </div>
           </section>
         </div>
       </div>

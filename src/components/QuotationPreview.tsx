@@ -227,6 +227,18 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                   {/* Signature Block */}
                   <div className="pt-8 pb-4">
                     <p className="text-sm font-bold text-gray-800 mb-20">Thank You</p>
+                    
+                    {/* E-Signature Image */}
+                    {data.signatureImage && (
+                      <div className="mb-4">
+                        <img 
+                          src={data.signatureImage} 
+                          alt="Signature" 
+                          className="h-16 w-auto object-contain"
+                        />
+                      </div>
+                    )}
+                    
                     <div className="inline-block text-left">
                       <div className="w-48 border-t-2 border-gray-900 mb-2"></div>
                       <p className="text-base font-bold text-gray-900">Shakhawat Hossain</p>
