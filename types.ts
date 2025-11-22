@@ -26,7 +26,6 @@ export interface QuotationData {
   hideClientDetails: boolean;
   signatureImage?: string;
   signatureSpacing: number; // Spacing before signature block in pixels
-  thankYouSize: number; // Font size for "Thank You" text (12-24px)
   signatureBlockSize: number; // Scale for signature block (80-120%)
 }
 
@@ -55,6 +54,5 @@ export const INITIAL_DATA: QuotationData = {
   taxRate: 0,
   hideClientDetails: false,
   signatureSpacing: 32, // Default spacing (32px = 8 * 4 in Tailwind units)
-  thankYouSize: 14, // Default 14px (text-sm)
   signatureBlockSize: 100 // Default 100% scale
 };

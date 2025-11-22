@@ -772,26 +772,6 @@ const App: React.FC = () => {
             
             {/* Size Controls */}
             <div className="mt-6 space-y-4">
-              {/* Thank You Size Control */}
-              <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
-                <label className="block text-xs font-bold text-slate-600 mb-3">"THANK YOU" TEXT SIZE</label>
-                <div className="flex items-center gap-4">
-                  <input 
-                    type="range" 
-                    min="8" 
-                    max="24" 
-                    value={data.thankYouSize}
-                    onChange={(e) => setData({...data, thankYouSize: parseInt(e.target.value)})}
-                    className="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-village-green"
-                  />
-                  <span className="text-sm font-bold text-slate-700 min-w-[60px] text-right">{data.thankYouSize}px</span>
-                </div>
-                <div className="flex justify-between text-[10px] text-slate-500 mt-1">
-                  <span>Small</span>
-                  <span>Large</span>
-                </div>
-              </div>
-
               {/* Signature Block Scale Control */}
               <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
                 <label className="block text-xs font-bold text-slate-600 mb-3">SIGNATURE BLOCK SIZE</label>
