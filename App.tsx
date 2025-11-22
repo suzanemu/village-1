@@ -686,7 +686,7 @@ const App: React.FC = () => {
                   min="30" 
                   max="70" 
                   value={data.notesBoxWidth}
-                  onChange={(e) => setData({...data, notesBoxWidth: parseInt(e.target.value), totalBoxWidth: 100 - parseInt(e.target.value)})}
+                  onChange={(e) => setData({...data, notesBoxWidth: parseInt(e.target.value)})}
                   className="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-village-green"
                 />
                 <span className="text-sm font-bold text-slate-700 min-w-[60px] text-right">{data.notesBoxWidth}%</span>
@@ -706,7 +706,7 @@ const App: React.FC = () => {
                   min="30" 
                   max="70" 
                   value={data.totalBoxWidth}
-                  onChange={(e) => setData({...data, totalBoxWidth: parseInt(e.target.value), notesBoxWidth: 100 - parseInt(e.target.value)})}
+                  onChange={(e) => setData({...data, totalBoxWidth: parseInt(e.target.value)})}
                   className="flex-1 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-village-blue"
                 />
                 <span className="text-sm font-bold text-slate-700 min-w-[60px] text-right">{data.totalBoxWidth}%</span>
