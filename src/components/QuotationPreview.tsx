@@ -245,13 +245,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                   <div className="flex gap-6 mb-8 border-t-2 border-gray-100 pt-6">
                     {/* Notes Section - Left Side */}
                     {data.notes && (
-                      <div 
-                        className="bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200 rounded-xl p-5 shadow-sm" 
-                        style={{ 
-                          width: `${data.notesBoxWidth}%`,
-                          minHeight: `${data.notesBoxHeight}px`
-                        }}
-                      >
+                      <div className="flex-1 bg-gradient-to-br from-slate-50 to-gray-100 border border-gray-200 rounded-xl p-5 shadow-sm">
                         <div className="flex items-center gap-2 mb-3">
                           <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Terms & Conditions</h4>
                         </div>
@@ -262,11 +256,8 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                     )}
 
                     {/* Totals Section - Right Side */}
-                    <div style={{ 
-                      width: `${data.totalBoxWidth}%`,
-                      minHeight: `${data.totalBoxHeight}px`
-                    }}>
-                      <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm h-full flex flex-col">
+                    <div className="flex-1">
+                      <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
                         <table className="w-full border-collapse text-sm">
                           <tbody>
                             <tr className="border-b border-gray-100">
@@ -293,7 +284,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                         </table>
                         
                         {/* Grand Total Card */}
-                        <div className="bg-gradient-to-br from-emerald-500 to-green-600 p-5 mt-auto">
+                        <div className="bg-gradient-to-br from-emerald-500 to-green-600 p-5">
                           <div className="flex justify-between items-center mb-2">
                             <span className="font-bold text-white text-base uppercase tracking-wider">Grand Total</span>
                             <span className="font-bold text-white text-3xl">
