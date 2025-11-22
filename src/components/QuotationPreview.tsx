@@ -141,7 +141,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
 
               {/* --- Items Table --- */}
               {page.items.length > 0 && (
-                <div className="flex-grow">
+                <div>
                   <table className="w-full border-collapse mb-2">
                     <thead>
                       <tr className="bg-village-blue text-white text-xs uppercase tracking-wider">
@@ -176,7 +176,8 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
 
               {/* --- Footer (Totals + Notes + Signatures) - Only on Last Page --- */}
               {showFooter && (
-                <div className="mt-auto">
+                <div className="mt-6">
+
                   {/* Notes and Totals - Side by Side */}
                   <div className="flex gap-6 mb-8 border-t-2 border-gray-100 pt-4">
                     {/* Notes Section - Left Side */}
