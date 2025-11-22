@@ -337,12 +337,12 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                         <div className="bg-white shadow-md border border-gray-300/50 rounded-xl overflow-hidden">
                           <table className="w-full border-collapse text-sm">
                             <tbody>
-                              <tr className="bg-gradient-to-r from-blue-200 to-sky-200 border-b-2 border-gray-500">
+                              <tr className="bg-gradient-to-r from-white to-gray-200 border-b-2 border-gray-500">
                                 <td className="p-3 text-right font-medium text-gray-900">Sub-total</td>
                                 <td className="p-3 text-right font-bold text-gray-900 text-base">${subTotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                               </tr>
                               {data.vatRate > 0 && (
-                                <tr className="bg-gradient-to-r from-blue-200 to-sky-200 border-b-2 border-gray-500">
+                                <tr className="bg-gradient-to-r from-white to-gray-200 border-b-2 border-gray-500">
                                   <td className="p-3 text-right font-medium text-gray-900">Tax ({data.vatRate}%)</td>
                                   <td className="p-3 text-right font-bold text-gray-900 text-base">
                                     ${vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -350,7 +350,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                                 </tr>
                               )}
                               {data.taxRate > 0 && (
-                                <tr className="bg-gradient-to-r from-blue-200 to-sky-200 border-b-2 border-gray-500">
+                                <tr className="bg-gradient-to-r from-white to-gray-200 border-b-2 border-gray-500">
                                   <td className="p-3 text-right font-medium text-gray-900">Tax ({data.taxRate}%)</td>
                                   <td className="p-3 text-right font-bold text-gray-900 text-base">
                                     ${taxAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
