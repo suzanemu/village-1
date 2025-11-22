@@ -119,24 +119,24 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
           >
              {/* Watermark Layer - On Every Page */}
             <div 
-              className="absolute right-0 p-12 opacity-[0.08] pointer-events-none z-0 flex items-end justify-end w-full h-full overflow-hidden"
+              className="absolute right-0 p-12 opacity-[0.08] pointer-events-none z-0 flex items-start justify-end w-full h-full overflow-hidden"
               style={{ 
-                bottom: `${data.watermarkVerticalPosition}%`,
-                transform: `translateY(${data.watermarkVerticalPosition}%)`
+                top: '0',
+                transform: `translateY(${100 - data.watermarkVerticalPosition}%)`
               }}
             >
                  {data.watermarkImage ? (
                    <img 
                      src={data.watermarkImage} 
                      alt="Watermark" 
-                     className="transform translate-x-10 translate-y-10 object-contain"
+                     className="transform translate-x-10 object-contain"
                      style={{ width: `${data.watermarkWidth}px`, height: 'auto' }}
                    />
                  ) : (
                    <VillageLogo 
                       src={data.logoImage} 
                       width={500} 
-                      className="transform translate-x-10 translate-y-10"
+                      className="transform translate-x-10"
                    />
                  )}
             </div>
