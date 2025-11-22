@@ -697,8 +697,28 @@ const App: React.FC = () => {
               </div>
             </div>
 
+            {/* Notes Box Height */}
+            <div className="p-4 bg-green-50 rounded-lg border border-green-200 mb-4">
+              <label className="block text-xs font-bold text-green-700 mb-3">NOTES BOX HEIGHT</label>
+              <div className="flex items-center gap-4">
+                <input 
+                  type="range" 
+                  min="100" 
+                  max="400" 
+                  value={data.notesBoxHeight}
+                  onChange={(e) => setData({...data, notesBoxHeight: parseInt(e.target.value)})}
+                  className="flex-1 h-2 bg-green-200 rounded-lg appearance-none cursor-pointer accent-green-600"
+                />
+                <span className="text-sm font-bold text-green-700 min-w-[60px] text-right">{data.notesBoxHeight}px</span>
+              </div>
+              <div className="flex justify-between text-[10px] text-green-600 mt-1">
+                <span>Smaller</span>
+                <span>Bigger</span>
+              </div>
+            </div>
+
             {/* Total Box Width */}
-            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200">
+            <div className="p-4 bg-slate-50 rounded-lg border border-slate-200 mb-4">
               <label className="block text-xs font-bold text-slate-600 mb-3">TOTAL BOX WIDTH</label>
               <div className="flex items-center gap-4">
                 <input 
@@ -714,6 +734,26 @@ const App: React.FC = () => {
               <div className="flex justify-between text-[10px] text-slate-500 mt-1">
                 <span>Narrower</span>
                 <span>Wider</span>
+              </div>
+            </div>
+
+            {/* Total Box Height */}
+            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <label className="block text-xs font-bold text-blue-700 mb-3">TOTAL BOX HEIGHT</label>
+              <div className="flex items-center gap-4">
+                <input 
+                  type="range" 
+                  min="100" 
+                  max="400" 
+                  value={data.totalBoxHeight}
+                  onChange={(e) => setData({...data, totalBoxHeight: parseInt(e.target.value)})}
+                  className="flex-1 h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                />
+                <span className="text-sm font-bold text-blue-700 min-w-[60px] text-right">{data.totalBoxHeight}px</span>
+              </div>
+              <div className="flex justify-between text-[10px] text-blue-600 mt-1">
+                <span>Smaller</span>
+                <span>Bigger</span>
               </div>
             </div>
           </section>
