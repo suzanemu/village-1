@@ -343,7 +343,7 @@ export const QuotationPreview = forwardRef<HTMLDivElement, QuotationPreviewProps
                               </tr>
                               {data.vatRate > 0 && (
                                 <tr className="bg-white border-b-2 border-gray-500">
-                                  <td className="p-3 text-right font-medium text-gray-900">Tax ({data.vatRate}%)</td>
+                                  <td className="p-3 text-right font-medium text-gray-900">VAT ({data.vatRate}%)</td>
                                   <td className="p-3 text-right font-bold text-gray-900 text-base">
                                     ৳{vatAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                   </td>
