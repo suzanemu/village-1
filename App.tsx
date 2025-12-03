@@ -153,16 +153,16 @@ const App: React.FC = () => {
 
         const pageElement = pages[i] as HTMLElement;
         
-        // Capture the specific page
+        // Maximum compression settings for smallest file size
         const canvas = await html2canvas(pageElement, {
-          scale: 2.5, // Good balance between quality and size
+          scale: 1.0, // Minimum scale for smallest file size
           useCORS: true,
           logging: false,
           backgroundColor: '#ffffff'
         });
 
-        // Use JPEG format with 85% quality for much smaller file size
-        const imgData = canvas.toDataURL('image/jpeg', 0.85);
+        // Use JPEG with 40% quality for maximum compression (still readable)
+        const imgData = canvas.toDataURL('image/jpeg', 0.40);
         pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
       }
       
