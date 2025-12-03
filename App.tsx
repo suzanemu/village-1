@@ -161,8 +161,9 @@ const App: React.FC = () => {
           backgroundColor: '#ffffff'
         });
 
-        const imgData = canvas.toDataURL('image/png');
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        // Use JPEG format with 85% quality for much smaller file size
+        const imgData = canvas.toDataURL('image/jpeg', 0.85);
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
       }
       
       pdf.save(`Quotation_${data.toCompany.replace(/\s+/g, '_')}.pdf`);
