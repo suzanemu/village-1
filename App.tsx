@@ -153,17 +153,16 @@ const App: React.FC = () => {
 
         const pageElement = pages[i] as HTMLElement;
         
-        // Maximum compression settings for smallest file size
+        // Capture the specific page
         const canvas = await html2canvas(pageElement, {
-          scale: 1.0, // Minimum scale for smallest file size
+          scale: 2.5, // Good balance between quality and size
           useCORS: true,
           logging: false,
           backgroundColor: '#ffffff'
         });
 
-        // Use JPEG with 40% quality for maximum compression (still readable)
-        const imgData = canvas.toDataURL('image/jpeg', 0.40);
-        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+        const imgData = canvas.toDataURL('image/png');
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
       }
       
       pdf.save(`Quotation_${data.toCompany.replace(/\s+/g, '_')}.pdf`);
